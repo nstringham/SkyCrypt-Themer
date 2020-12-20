@@ -15,6 +15,9 @@ export class ThemeForm {
         this.bgBlurField = element.querySelector("#bg-blur");
         for (const colorName in defaultTheme.colors) {
             this.colorFields[colorName] = element.querySelector(`#${colorName}-color`);
+            element.querySelector<HTMLButtonElement>(`#${colorName}-default`).addEventListener('click', () => {
+                this.colorFields[colorName].value = defaultTheme.colors[colorName]
+            })
         }
         this.theme = value;
     }
