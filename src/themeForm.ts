@@ -3,11 +3,13 @@ import { Theme } from "./common";
 export class ThemeForm {
 
     nameField: HTMLInputElement;
+    authorField: HTMLInputElement;
     bgField: HTMLInputElement;
     bgBlurField: HTMLInputElement;
 
     constructor(element, value) {
         this.nameField = element.querySelector("#name");
+        this.authorField = element.querySelector("#author");
         this.bgField = element.querySelector("#bg");
         this.bgBlurField = element.querySelector("#bg_blur");
         this.theme = value;
@@ -16,7 +18,7 @@ export class ThemeForm {
     get theme(): Theme {
         return {
             name: this.nameField.value,
-            author: "SkyCrypt Team",
+            author: this.authorField.value,
             official: false,
             logo: "../img/logo_square.svg",
             backgrounds: {
@@ -38,6 +40,7 @@ export class ThemeForm {
 
     set theme(value: Theme) {
         this.nameField.value = value?.name || ''
+        this.authorField.value = value?.author || ''
         this.bgField.value = value?.backgrounds?.bg?.webp || ''
         this.bgBlurField.value = value?.backgrounds?.bg_blur?.webp || ''
     }
