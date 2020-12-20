@@ -1,9 +1,9 @@
 const { join } = require('path');
 const CopyPlugin = require("copy-webpack-plugin");
 
-module.exports = {
+module.exports = (env, argv) => ({
     mode: process.env.NODE_ENV,
-    devtool: 'inline-source-map',
+    devtool: (argv.mode === 'development') ? 'inline-source-map' : undefined,
     entry: {
         contentScript: join(__dirname, 'src/contentScript.ts'),
         background: join(__dirname, 'src/background.ts'),
@@ -37,4 +37,4 @@ module.exports = {
             ],
         }),
     ],
-};
+});
