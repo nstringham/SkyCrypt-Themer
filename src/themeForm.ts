@@ -11,7 +11,7 @@ export class ThemeForm {
         this.nameField = element.querySelector("#name");
         this.authorField = element.querySelector("#author");
         this.bgField = element.querySelector("#bg");
-        this.bgBlurField = element.querySelector("#bg_blur");
+        this.bgBlurField = element.querySelector("#bg-blur");
         this.theme = value;
     }
 
