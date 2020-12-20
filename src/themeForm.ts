@@ -2,9 +2,9 @@ import { Theme } from "./common";
 
 export class ThemeForm {
 
-    nameField;
-    bgField;
-    bgBlurField;
+    nameField: HTMLInputElement;
+    bgField: HTMLInputElement;
+    bgBlurField: HTMLInputElement;
 
     constructor(element, value) {
         this.nameField = element.querySelector("#name");
