@@ -1,10 +1,9 @@
+import { Themes } from "./common";
 import { ThemeForm } from "./themeForm";
 
 const themeField = document.getElementById('theme') as HTMLInputElement;
 
-const themeForms = {
-    themer: {}
-}
+const themeForms: { [key: string]: ThemeForm } = {};
 
 chrome.storage.sync.get(['themes', 'theme'], (result) => {
     if (result.themes) {
@@ -16,7 +15,7 @@ chrome.storage.sync.get(['themes', 'theme'], (result) => {
 });
 
 document.querySelector('form').addEventListener("change", () => {
-    const themes = {}
+    const themes: Themes = {}
     for (const key in themeForms) {
         themes[key] = themeForms[key].theme;
     }

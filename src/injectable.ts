@@ -1,8 +1,10 @@
-import { Theme } from "./common";
+import { Themes } from "./common";
 
 declare namespace extra {
     let themes: Theme[];
 }
+
+declare function switchTheme(theme: string): void
 
 window.addEventListener("message", (event) => {
     if (event.source === window) {
@@ -25,7 +27,7 @@ window.addEventListener("message", (event) => {
 
 const themesBox = document.getElementById('themes_box');
 
-function makeButton(themeName) {
+function makeButton(themeName: string) {
     if (!document.getElementById(`${themeName}-theme`)) {
         const theme = extra.themes[themeName]
         const div = document.createElement('div')

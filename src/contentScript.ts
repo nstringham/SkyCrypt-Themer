@@ -1,16 +1,18 @@
+import { Themes } from "./common";
+
 const scriptElement = document.createElement('script');
 scriptElement.type = "module";
 scriptElement.src = chrome.runtime.getURL('injectable.js');
 document.head.appendChild(scriptElement);
 
-function sendThemes(themes) {
+function sendThemes(themes: Themes) {
     window.postMessage({
         type: "set-themes",
         themes
     }, "https://sky.shiiyu.moe");
 }
 
-function switchTheme(theme) {
+function switchTheme(theme: string) {
     window.postMessage({
         type: "switch-theme",
         theme

@@ -1,3 +1,7 @@
+export interface Themes {
+    [key: string]: Theme
+}
+
 export interface Theme {
     name: string,
     author: string,
