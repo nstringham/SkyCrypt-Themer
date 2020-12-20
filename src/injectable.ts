@@ -38,7 +38,7 @@ function makeButton(themeName: string) {
             <div class="theme-author">by <span>${theme.author}</span></div>
             <div class="switch_themes_button" id="${themeName}-theme" onclick="switchTheme('${themeName}')">Switch</div>
         `
-        themesBox.appendChild(div)
+        themesBox?.appendChild(div)
     }
 }
 

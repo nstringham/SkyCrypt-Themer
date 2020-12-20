@@ -30,11 +30,13 @@ export interface ThemeColors {
     maxedbar?: Color
 }
 
-type Color = string
+export type ThemeColorName = 'icon' | 'line' | 'link' | 'hover' | 'maxed' | 'gold' | 'skillbar' | 'maxedbar'
 
-type ImageUrl = string
+export type Color = string
 
-export const defaultTheme: Theme = {
+export type ImageUrl = string
+
+export const defaultTheme = {
     name: "Default Theme",
     author: "SkyCrypt Team",
     official: true,
