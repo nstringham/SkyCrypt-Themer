@@ -17,7 +17,7 @@ export class ThemeForm {
         return {
             name: this.nameField.value,
             author: "SkyCrypt Team",
-            official: true,
+            official: false,
             logo: "../img/logo_square.svg",
             backgrounds: {
                 bg: this.bgField.value.length ? { webp: this.bgField.value } : undefined,
