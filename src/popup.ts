@@ -1,6 +1,6 @@
-import { ThemeForm } from "./themeForm.js";
+import { ThemeForm } from "./themeForm";
 
-const themeField = document.getElementById('theme')
+const themeField = document.getElementById('theme') as HTMLInputElement;
 
 const themeForms = {
     themer: {}

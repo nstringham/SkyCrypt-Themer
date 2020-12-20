@@ -1,6 +1,5 @@
-'use strict';
 const scriptElement = document.createElement('script');
-scriptElement.src = chrome.runtime.getURL('pageScript.js');
+scriptElement.src = chrome.runtime.getURL('injectable.js');
 document.head.appendChild(scriptElement);
 
 function sendThemes(themes) {

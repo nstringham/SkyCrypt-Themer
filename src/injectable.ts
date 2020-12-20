@@ -1,4 +1,9 @@
-'use strict';
+import { Theme } from "./common";
+
+declare namespace extra {
+    let themes: Theme[];
+}
+
 window.addEventListener("message", (event) => {
     if (event.source === window) {
         switch (event.data?.type) {

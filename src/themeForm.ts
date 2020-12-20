@@ -1,3 +1,5 @@
+import { Theme } from "./common";
+
 export class ThemeForm {
 
     nameField;
@@ -11,7 +13,7 @@ export class ThemeForm {
         this.theme = value;
     }
 
-    get theme() {
+    get theme(): Theme {
         return {
             name: this.nameField.value,
             author: "SkyCrypt Team",
@@ -34,9 +36,9 @@ export class ThemeForm {
         }
     }
 
-    set theme(value) {
+    set theme(value: Theme) {
         this.nameField.value = value?.name || "Themer Theme"
         this.bgField.value = value?.backgrounds?.bg?.webp || ''
-        this.bgBlurField.value = value?.backgrounds?.bg?.webp_blur || ''
+        this.bgBlurField.value = value?.backgrounds?.bg_blur?.webp || ''
     }
 }

@@ -32,7 +32,7 @@
         }
     },
     "web_accessible_resources": [
-        "pageScript.js"
+        "injectable.js"
     ],
     "manifest_version": 2
 }
