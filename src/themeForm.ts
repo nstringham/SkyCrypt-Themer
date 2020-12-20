@@ -25,7 +25,7 @@ export class ThemeForm {
     get theme(): Theme {
         const colors: ThemeColors = {};
         for (const colorName in defaultTheme.colors) {
-            if (this.colorFields[colorName].value !== defaultTheme.colors[colorName as ThemeColorName]) {
+            if (this.colorFields[colorName].value !== defaultTheme.colors[colorName as ThemeColorName].toLocaleLowerCase()) {
                 colors[colorName as ThemeColorName] = this.colorFields[colorName].value;
             }
         }
