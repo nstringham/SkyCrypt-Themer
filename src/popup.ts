@@ -8,7 +8,7 @@ const themeForms = {
 
 chrome.storage.sync.get(['themes', 'theme'], (result) => {
     if (result.themes) {
-        themeForms.themer = new ThemeForm(document.querySelector('form'), result.themes.themer);
+        themeForms.themer = new ThemeForm(document.querySelector('form'), result.themes?.themer);
     }
     if (result.theme) {
         themeField.value = result.theme;
