@@ -1,4 +1,4 @@
-import { Theme } from "./common";
+import { Theme, defaultTheme, ThemeColors } from "./common";
 
 export class ThemeForm {
 
@@ -6,16 +6,26 @@ export class ThemeForm {
     authorField: HTMLInputElement;
     bgField: HTMLInputElement;
     bgBlurField: HTMLInputElement;
+    colorFields: { [key: string]: HTMLInputElement } = {};
 
     constructor(element, value) {
         this.nameField = element.querySelector("#name");
         this.authorField = element.querySelector("#author");
         this.bgField = element.querySelector("#bg");
         this.bgBlurField = element.querySelector("#bg-blur");
+        for (const colorName in defaultTheme.colors) {
+            this.colorFields[colorName] = element.querySelector(`#${colorName}-color`);
+        }
         this.theme = value;
     }
 
     get theme(): Theme {
+        const colors: ThemeColors = {};
+        for (const colorName in defaultTheme.colors) {
+            if (this.colorFields[colorName].value !== defaultTheme.colors[colorName]) {
+                colors[colorName] = this.colorFields[colorName].value;
+            }
+        }
         return {
             name: this.nameField.value,
             author: this.authorField.value,
@@ -25,16 +35,7 @@ export class ThemeForm {
                 bg: this.bgField.value.length ? { webp: this.bgField.value } : undefined,
                 bg_blur: this.bgBlurField.value.length ? { webp: this.bgBlurField.value } : undefined
             },
-            colors: {
-                icon: "#0BCA51",
-                line: "#0BDA51",
-                link: "#0BEA51",
-                hover: "#09EF70",
-                maxed: "#DD980E",
-                gold: "#FDBB3C",
-                skillbar: "#0BAA51",
-                maxedbar: "#CE8F12"
-            }
+            colors
         }
     }
 
@@ -43,5 +44,8 @@ export class ThemeForm {
         this.authorField.value = value?.author || ''
         this.bgField.value = value?.backgrounds?.bg?.webp || ''
         this.bgBlurField.value = value?.backgrounds?.bg_blur?.webp || ''
+        for (const key in defaultTheme.colors) {
+            this.colorFields[key].value = value?.colors?.[key] || defaultTheme.colors[key]
+        }
     }
 }
