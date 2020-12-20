@@ -37,7 +37,7 @@ export class ThemeForm {
     }
 
     set theme(value: Theme) {
-        this.nameField.value = value?.name || "Themer Theme"
+        this.nameField.value = value?.name || ''
         this.bgField.value = value?.backgrounds?.bg?.webp || ''
         this.bgBlurField.value = value?.backgrounds?.bg_blur?.webp || ''
     }

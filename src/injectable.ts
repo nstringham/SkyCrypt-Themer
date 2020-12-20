@@ -9,6 +9,9 @@ window.addEventListener("message", (event) => {
         switch (event.data?.type) {
             case "set-themes":
                 for (const key in event.data.themes) {
+                    if (!event.data.themes[key].name) {
+                        event.data.themes[key].name = "Themer Theme"
+                    }
                     extra.themes[key] = event.data.themes[key];
                     makeButton(key);
                 }
