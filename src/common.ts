@@ -12,16 +12,18 @@ export interface Theme {
             webp?: ImageUrl
         }
     },
-    colors?: {
-        icon?: Color,
-        line?: Color,
-        link?: Color,
-        hover?: Color,
-        maxed?: Color,
-        gold?: Color,
-        skillbar?: Color,
-        maxedbar?: Color
-    }
+    colors?: ThemeColors
+}
+
+export interface ThemeColors {
+    icon?: Color,
+    line?: Color,
+    link?: Color,
+    hover?: Color,
+    maxed?: Color,
+    gold?: Color,
+    skillbar?: Color,
+    maxedbar?: Color
 }
 
 type Color = string
