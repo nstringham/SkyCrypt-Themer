@@ -1,7 +1,7 @@
 import { Themes } from "./common";
 
 declare namespace extra {
-    let themes: Theme[];
+    let themes: Themes;
 }
 
 declare function switchTheme(theme: string): void
