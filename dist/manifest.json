@@ -1,0 +1,38 @@
+{
+    "name": "SkyCrypt Themer",
+    "version": "0.0.1",
+    "description": "Create themes for SkyCrypt",
+    "permissions": [
+        "storage",
+        "declarativeContent"
+    ],
+    "icons": {
+        "512": "images/logo-512.png"
+    },
+    "background": {
+        "scripts": [
+            "background.js"
+        ],
+        "persistent": false
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://sky.shiiyu.moe/*"
+            ],
+            "js": [
+                "contentScript.js"
+            ]
+        }
+    ],
+    "page_action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "512": "images/logo-512.png"
+        }
+    },
+    "web_accessible_resources": [
+        "pageScript.js"
+    ],
+    "manifest_version": 2
+}
