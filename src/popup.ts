@@ -1,7 +1,7 @@
 import { Themes } from "./common";
 import { ThemeForm } from "./themeForm";
 
-const themeField = document.getElementById('theme') as HTMLInputElement;
+const themeButton = document.getElementById('use-theme') as HTMLButtonElement;
 
 const themeForms: { [key: string]: ThemeForm } = {};
 
@@ -22,5 +22,8 @@ form.addEventListener("change", () => {
         themes
     });
 });
+
+themeButton.addEventListener('click', () => {
+})
 
 console.log(themeForms)
