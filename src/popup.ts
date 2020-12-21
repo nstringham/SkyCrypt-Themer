@@ -1,8 +1,6 @@
 import { Themes } from "./common";
 import { ThemeForm } from "./themeForm";
 
-const themeButton = document.getElementById('use-theme') as HTMLButtonElement;
-
 const themeForms: { [key: string]: ThemeForm } = {};
 
 const form = document.querySelector('form') as HTMLFormElement;
@@ -23,13 +21,5 @@ form.addEventListener("change", () => {
         themes
     });
 });
-
-themeButton.addEventListener('click', () => {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        if (tabs[0].id) {
-            chrome.tabs.sendMessage(tabs[0].id, { type: "switch-theme", theme: 'themer' });
-        }
-    });
-})
 
 console.log(themeForms)

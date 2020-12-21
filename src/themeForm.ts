@@ -19,6 +19,13 @@ export class ThemeForm {
                 this.colorFields[colorName].value = defaultTheme.colors[colorName as ThemeColorName]
             })
         }
+        element.querySelector<HTMLButtonElement>('#use-theme')?.addEventListener('click', () => {
+            chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+                if (tabs[0].id) {
+                    chrome.tabs.sendMessage(tabs[0].id, { type: "switch-theme", theme: this.id });
+                }
+            });
+        })
         this.theme = value;
     }
 
