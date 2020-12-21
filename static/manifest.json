@@ -23,6 +23,15 @@
             "js": [
                 "contentScript.js"
             ]
+        },
+        {
+            "matches": [
+                "https://sky.shiiyu.moe/*"
+            ],
+            "js": [
+                "contentScriptStart.js"
+            ],
+            "run_at": "document_start"
         }
     ],
     "page_action": {

@@ -6,6 +6,7 @@ module.exports = (env, argv) => ({
     devtool: (argv.mode === 'development') ? 'inline-source-map' : undefined,
     entry: {
         contentScript: join(__dirname, 'src/contentScript.ts'),
+        contentScriptStart: join(__dirname, 'src/contentScriptStart.ts'),
         background: join(__dirname, 'src/background.ts'),
         injectable: join(__dirname, 'src/injectable.ts'),
         popup: join(__dirname, 'src/popup.ts'),
