@@ -2,11 +2,11 @@ import { Theme, defaultTheme, ThemeColors, ThemeColorName } from "./common";
 
 export class ThemeForm {
 
-    nameField: HTMLInputElement;
-    authorField: HTMLInputElement;
-    bgField: HTMLInputElement;
-    bgBlurField: HTMLInputElement;
-    colorFields: { [key: string]: HTMLInputElement } = {};
+    private nameField: HTMLInputElement;
+    private authorField: HTMLInputElement;
+    private bgField: HTMLInputElement;
+    private bgBlurField: HTMLInputElement;
+    private colorFields: { [key: string]: HTMLInputElement } = {};
 
     constructor(element: HTMLElement, value: Theme) {
         this.nameField = element.querySelector("#name") as HTMLInputElement;
