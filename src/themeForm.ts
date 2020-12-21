@@ -8,7 +8,7 @@ export class ThemeForm {
     private bgBlurField: HTMLInputElement;
     private colorFields: { [key: string]: HTMLInputElement } = {};
 
-    constructor(element: HTMLElement, value: Theme) {
+    constructor(element: HTMLElement, value: Theme, private id: string) {
         this.nameField = element.querySelector("#name") as HTMLInputElement;
         this.authorField = element.querySelector("#author") as HTMLInputElement;
         this.bgField = element.querySelector("#bg") as HTMLInputElement;
