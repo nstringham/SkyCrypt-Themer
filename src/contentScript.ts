@@ -33,7 +33,7 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
 });
 
 window.addEventListener("message", (event) => {
-    if (event.source == window && event.data?.message == "ready") {
+    if (event.source === window && event.data?.message === "ready") {
 
         chrome.storage.sync.get(['themes', 'theme'], (result) => {
             if (result.themes) {
