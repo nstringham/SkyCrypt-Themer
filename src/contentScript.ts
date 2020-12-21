@@ -12,13 +12,6 @@ function sendThemes(themes: Themes) {
     }, "https://sky.shiiyu.moe");
 }
 
-function switchTheme(theme: string) {
-    window.postMessage({
-        type: "switch-theme",
-        theme
-    }, "https://sky.shiiyu.moe");
-}
-
 chrome.storage.onChanged.addListener((changes, namespace) => {
     if (namespace === 'sync') {
 
@@ -39,4 +32,10 @@ window.addEventListener("message", (event) => {
 
     }
 });
+
+chrome.runtime.onMessage.addListener(request => {
+    if (request.type === "switch-theme") {
+        window.postMessage(request, "https://sky.shiiyu.moe");
+    }
+})
 
