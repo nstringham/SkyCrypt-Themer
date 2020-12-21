@@ -6,6 +6,8 @@ declare namespace extra {
 
 declare function switchTheme(theme: string): void
 
+declare function loadTheme(currentTheme: string): void
+
 window.addEventListener("message", (event) => {
     if (event.source === window) {
         switch (event.data?.type) {
@@ -15,6 +17,9 @@ window.addEventListener("message", (event) => {
                         event.data.themes[key].name = "Themer Theme"
                     }
                     extra.themes[key] = event.data.themes[key];
+                    if (localStorage.getItem('currentTheme') === key) {
+                        loadTheme(key);
+                    }
                     makeButton(key);
                 }
                 break;
