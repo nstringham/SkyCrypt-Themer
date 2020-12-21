@@ -25,22 +25,15 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
         if (changes.themes) {
             sendThemes(changes.themes.newValue);
         }
-
-        if (changes.theme) {
-            switchTheme(changes.theme.newValue)
-        }
     }
 });
 
 window.addEventListener("message", (event) => {
     if (event.source === window && event.data?.message === "ready") {
 
-        chrome.storage.sync.get(['themes', 'theme'], (result) => {
+        chrome.storage.sync.get('themes', (result) => {
             if (result.themes) {
                 sendThemes(result.themes)
-            }
-            if (result.theme) {
-                switchTheme(result.theme)
             }
         });
 

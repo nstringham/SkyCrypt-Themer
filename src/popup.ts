@@ -7,12 +7,9 @@ const themeForms: { [key: string]: ThemeForm } = {};
 
 const form = document.querySelector('form') as HTMLFormElement;
 
-chrome.storage.sync.get(['themes', 'theme'], (result) => {
+chrome.storage.sync.get('themes', (result) => {
     if (result.themes) {
         themeForms.themer = new ThemeForm(form, result.themes?.themer);
-    }
-    if (result.theme) {
-        themeField.value = result.theme;
     }
 });
 
@@ -22,7 +19,6 @@ form.addEventListener("change", () => {
         themes[key] = themeForms[key].theme;
     }
     chrome.storage.sync.set({
-        theme: themeField.value,
         themes
     });
 });
