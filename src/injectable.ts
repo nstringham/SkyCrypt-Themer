@@ -38,7 +38,7 @@ function makeButton(themeName: string) {
         const div = document.createElement('div')
         div.className = "theme";
         div.innerHTML = /*html*/`
-            <img class="theme-icon" src="/resources/img/logo_square.svg">
+            <img class="theme-icon" src="${theme.logo || '/resources/img/logo_square.svg'}">
             <span class="theme-name">${theme.name}</span>
             <div class="theme-author">by <span>${theme.author}</span></div>
             <div class="switch_themes_button" id="${themeName}-theme" onclick="switchTheme('${themeName}')">Switch</div>

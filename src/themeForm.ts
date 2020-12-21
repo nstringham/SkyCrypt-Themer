@@ -4,6 +4,7 @@ export class ThemeForm {
 
     private nameField: HTMLInputElement;
     private authorField: HTMLInputElement;
+    private logoField: HTMLInputElement;
     private bgField: HTMLInputElement;
     private bgBlurField: HTMLInputElement;
     private colorFields: { [key: string]: HTMLInputElement } = {};
@@ -11,6 +12,7 @@ export class ThemeForm {
     constructor(element: HTMLElement, value: Theme, private id: string) {
         this.nameField = element.querySelector("#name") as HTMLInputElement;
         this.authorField = element.querySelector("#author") as HTMLInputElement;
+        this.logoField = element.querySelector("#logo") as HTMLInputElement;
         this.bgField = element.querySelector("#bg") as HTMLInputElement;
         this.bgBlurField = element.querySelector("#bg-blur") as HTMLInputElement;
         for (const colorName in defaultTheme.colors) {
@@ -40,7 +42,7 @@ export class ThemeForm {
             name: this.nameField.value,
             author: this.authorField.value,
             official: false,
-            logo: "../img/logo_square.svg",
+            logo: this.logoField.value,
             backgrounds: {
                 bg: this.bgField.value.length ? { webp: this.bgField.value } : undefined,
                 bg_blur: this.bgBlurField.value.length ? { webp: this.bgBlurField.value } : undefined
@@ -52,6 +54,7 @@ export class ThemeForm {
     set theme(value: Theme) {
         this.nameField.value = value?.name || ''
         this.authorField.value = value?.author || ''
+        this.logoField.value = value?.logo || ''
         this.bgField.value = value?.backgrounds?.bg?.webp || ''
         this.bgBlurField.value = value?.backgrounds?.bg_blur?.webp || ''
         for (const colorName in defaultTheme.colors) {
