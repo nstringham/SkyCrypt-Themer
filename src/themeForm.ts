@@ -47,8 +47,8 @@ export class ThemeForm {
         this.authorField.value = value?.author || ''
         this.bgField.value = value?.backgrounds?.bg?.webp || ''
         this.bgBlurField.value = value?.backgrounds?.bg_blur?.webp || ''
-        for (const key in defaultTheme.colors) {
-            this.colorFields[key].value = value?.colors?.[key as ThemeColorName] || defaultTheme.colors[key as ThemeColorName]
+        for (const colorName in defaultTheme.colors) {
+            this.colorFields[colorName].value = value?.colors?.[colorName as ThemeColorName] || defaultTheme.colors[colorName as ThemeColorName]
         }
     }
 }
