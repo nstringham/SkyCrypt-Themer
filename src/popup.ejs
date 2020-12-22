@@ -11,34 +11,24 @@
     <template id="theme-form">
         <form>
             <div>
-                <label>
-                    <span>Theme Name:</span>
-                    <input id="name" type="text" autocomplete="off" required>
-                </label>
+                <label for="name">Theme Name:</label>
+                <input id="name" type="text" autocomplete="off" required>
             </div>
             <div>
-                <label>
-                    <span>Author:</span>
-                    <input id="author" type="text" autocomplete="name" required>
-                </label>
+                <label for="author">Author:</label>
+                <input id="author" type="text" autocomplete="name" required>
             </div>
             <div>
-                <label>
-                    <span>Logo Icon:</span>
-                    <input id="logo" type="url" required>
-                </label>
+                <label>Logo Icon:</label>
+                <input id="logo" type="url" required>
             </div>
             <div>
-                <label>
-                    <span>Background:</span>
-                    <input id="bg" type="url">
-                </label>
+                <label for="bg">Background:</label>
+                <input id="bg" type="url">
             </div>
             <div>
-                <label>
-                    <span>Blurred Background (Firefox Only):</span>
-                    <input id="bg-blur" type="url">
-                </label>
+                <label for="bg-blur">Blurred Background (Firefox Only):</label>
+                <input id="bg-blur" type="url">
             </div>
             <% 
             const colorNames = ['icon', 'line', 'link', 'hover', 'maxed', 'gold', 'skillbar', 'maxedbar'];
@@ -46,11 +36,9 @@
             for (const colorName of colorNames) {
             %>
             <div>
-                <label>
-                    <span><%= colorName %> color:</span>
-                    <input id="<%= colorName %>-color" type="color">
-                    <button id="<%= colorName %>-default" type="button">use default</button>
-                </label>
+                <label for="<%= colorName %>-color"><%= colorName %> color:</label>
+                <input id="<%= colorName %>-color" type="color">
+                <button id="<%= colorName %>-default" type="button">use default</button>
             </div>
             <% } %>
             <div>
