@@ -1,6 +1,9 @@
 import { Theme, Themes, Storage } from "./common";
 import { ThemeForm } from "./themeForm";
 import "./popup.scss";
+import "@material/mwc-button";
+import "@material/mwc-textfield";
+import "@material/mwc-icon-button";
 
 const themeForms: { [key: string]: ThemeForm } = {};
 

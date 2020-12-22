@@ -4,32 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="popup.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet">
 </head>
 
 <body>
     <div id="themes-container"></div>
-    <button id="new-theme">New Theme</button>
+    <mwc-button id="new-theme" label="nem theme" raised></mwc-button>
     <template id="theme-form">
         <form>
             <div>
-                <label for="name">Theme Name:</label>
-                <input id="name" type="text" autocomplete="off" required>
+                <mwc-textfield id="name" type="text" label="theme name" outlined>
+                </mwc-textfield>
             </div>
             <div>
-                <label for="author">Author:</label>
-                <input id="author" type="text" autocomplete="name" required>
+                <mwc-textfield id="author" type="text" autocomplete="name" label="author" outlined>
+                </mwc-textfield>
             </div>
             <div>
-                <label>Logo Icon:</label>
-                <input id="logo" type="url" required>
+                <mwc-textfield id="logo" type="url" label="logo icon" outlined>
+                </mwc-textfield>
             </div>
             <div>
-                <label for="bg">Background:</label>
-                <input id="bg" type="url">
+                <mwc-textfield id="bg" type="url" label="background" outlined>
+                </mwc-textfield>
             </div>
             <div>
-                <label for="bg-blur">Blurred Background (Firefox Only):</label>
-                <input id="bg-blur" type="url">
+                <mwc-textfield id="bg-blur" type="url" label="blurred background (firefox only)" outlined>
+                </mwc-textfield>
             </div>
             <% 
             const colorNames = ['icon', 'line', 'link', 'hover', 'maxed', 'gold', 'skillbar', 'maxedbar'];
@@ -39,12 +41,12 @@
             <div>
                 <label for="<%= colorName %>-color"><%= colorName %> color:</label>
                 <input id="<%= colorName %>-color" type="color">
-                <button id="<%= colorName %>-default" type="button">use default</button>
+                <mwc-icon-button id="<%= colorName %>-default" icon="format_color_reset"></mwc-icon-button>
             </div>
             <% } %>
             <div>
-                <button id="use-theme" type="button">Use Theme</button>
-                <button id="delete-theme" type="button">Delete Theme</button>
+                <mwc-button id="use-theme" label="use theme" type="button" raised></mwc-button>
+                <mwc-button id="delete-theme" label="delete theme" type="button" raised></mwc-button>
             </div>
         </form>
     </template>

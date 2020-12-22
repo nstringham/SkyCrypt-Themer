@@ -19,7 +19,7 @@ export class ThemeForm {
         `#${colorName}-color`
       ) as HTMLInputElement;
       element
-        .querySelector<HTMLButtonElement>(`#${colorName}-default`)
+        .querySelector(`#${colorName}-default`)
         ?.addEventListener("click", () => {
           this.colorFields[colorName].value =
             defaultTheme.colors[colorName as ThemeColorName];
@@ -28,18 +28,16 @@ export class ThemeForm {
           );
         });
     }
-    element
-      .querySelector<HTMLButtonElement>("#use-theme")
-      ?.addEventListener("click", () => {
-        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-          if (tabs[0].id) {
-            chrome.tabs.sendMessage(tabs[0].id, {
-              type: "switch-theme",
-              theme: this.id,
-            });
-          }
-        });
+    element.querySelector("#use-theme")?.addEventListener("click", () => {
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        if (tabs[0].id) {
+          chrome.tabs.sendMessage(tabs[0].id, {
+            type: "switch-theme",
+            theme: this.id,
+          });
+        }
       });
+    });
     this.theme = value || { name: "", author: "", official: false, logo: "" };
   }
 
