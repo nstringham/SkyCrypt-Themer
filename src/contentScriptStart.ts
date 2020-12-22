@@ -1,4 +1,4 @@
-const startingTheme = localStorage.getItem('currentTheme')
+const startingTheme = localStorage.getItem('currentTheme');
 if (startingTheme) {
     chrome.storage.sync.get('themes', (result) => {
         if (result.themes?.[startingTheme]) {

@@ -18,9 +18,9 @@ export class ThemeForm {
         for (const colorName in defaultTheme.colors) {
             this.colorFields[colorName] = element.querySelector(`#${colorName}-color`) as HTMLInputElement;
             element.querySelector<HTMLButtonElement>(`#${colorName}-default`)?.addEventListener('click', () => {
-                this.colorFields[colorName].value = defaultTheme.colors[colorName as ThemeColorName]
+                this.colorFields[colorName].value = defaultTheme.colors[colorName as ThemeColorName];
                 this.colorFields[colorName].dispatchEvent(new Event('change', { bubbles: true }));
-            })
+            });
         }
         element.querySelector<HTMLButtonElement>('#use-theme')?.addEventListener('click', () => {
             chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -28,7 +28,7 @@ export class ThemeForm {
                     chrome.tabs.sendMessage(tabs[0].id, { type: "switch-theme", theme: this.id });
                 }
             });
-        })
+        });
         this.theme = value;
     }
 
@@ -49,17 +49,17 @@ export class ThemeForm {
                 bg_blur: this.bgBlurField.value.length ? { webp: this.bgBlurField.value } : undefined
             },
             colors
-        }
+        };
     }
 
     set theme(value: Theme) {
-        this.nameField.value = value?.name || ''
-        this.authorField.value = value?.author || ''
-        this.logoField.value = value?.logo || ''
-        this.bgField.value = value?.backgrounds?.bg?.webp || ''
-        this.bgBlurField.value = value?.backgrounds?.bg_blur?.webp || ''
+        this.nameField.value = value?.name || '';
+        this.authorField.value = value?.author || '';
+        this.logoField.value = value?.logo || '';
+        this.bgField.value = value?.backgrounds?.bg?.webp || '';
+        this.bgBlurField.value = value?.backgrounds?.bg_blur?.webp || '';
         for (const colorName in defaultTheme.colors) {
-            this.colorFields[colorName].value = value?.colors?.[colorName as ThemeColorName] || defaultTheme.colors[colorName as ThemeColorName]
+            this.colorFields[colorName].value = value?.colors?.[colorName as ThemeColorName] || defaultTheme.colors[colorName as ThemeColorName];
         }
     }
 }

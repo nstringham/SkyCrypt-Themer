@@ -7,7 +7,7 @@ const form = document.querySelector('form') as HTMLFormElement;
 
 chrome.storage.sync.get('themes', (result) => {
     if (result.themes) {
-        const id = 'themer'
+        const id = 'themer';
         themeForms[id] = new ThemeForm(form, result.themes?.[id], id);
     }
 });
@@ -20,13 +20,14 @@ form.addEventListener('submit', event => {
 });
 
 function updateThemes() {
-    const themes: Themes = {}
+    const themes: Themes = {};
     for (const key in themeForms) {
         themes[key] = themeForms[key].theme;
     }
     chrome.storage.sync.set({
         themes
     });
-});
 
-console.log(themeForms)
+}
+
+console.log(themeForms);

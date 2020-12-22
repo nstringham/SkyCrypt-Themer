@@ -26,7 +26,7 @@ window.addEventListener("message", (event) => {
 
         chrome.storage.sync.get('themes', (result) => {
             if (result.themes) {
-                sendThemes(result.themes)
+                sendThemes(result.themes);
             }
         });
 
@@ -37,5 +37,5 @@ chrome.runtime.onMessage.addListener(request => {
     if (request.type === "switch-theme") {
         window.postMessage(request, "https://sky.shiiyu.moe");
     }
-})
+});
 

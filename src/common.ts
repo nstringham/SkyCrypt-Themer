@@ -60,4 +60,4 @@ export const defaultTheme = {
         skillbar: "#0BAA51",
         maxedbar: "#CE8F12"
     }
-}
+};
