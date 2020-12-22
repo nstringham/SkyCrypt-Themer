@@ -1,5 +1,6 @@
 import { Theme, Themes, Storage } from "./common";
 import { ThemeForm } from "./themeForm";
+import "./popup.scss";
 
 const themeForms: { [key: string]: ThemeForm } = {};
 

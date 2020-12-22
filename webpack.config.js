@@ -3,6 +3,7 @@ const { join } = require('path');
 const CopyPlugin = require("copy-webpack-plugin");
 const ESLintPlugin = require('eslint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (env, argv) => ({
     mode: process.env.NODE_ENV,
@@ -25,10 +26,11 @@ module.exports = (env, argv) => ({
                 use: 'ts-loader',
                 exclude: /node_modules/,
             },
-            // {
-            //     test: /\.scss$/,
-            //     use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
-            // },
+            {
+                test: /\.scss$/,
+                include: /src/,
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+            },
         ],
     },
     resolve: {
@@ -47,6 +49,9 @@ module.exports = (env, argv) => ({
             filename: 'popup.html',
             template: 'src/popup.ejs',
             inject: false
-        })
+        }),
+        new MiniCssExtractPlugin({
+            filename: '[name].css',
+        }),
     ],
 });
