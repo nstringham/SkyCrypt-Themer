@@ -1,20 +1,41 @@
-import { Themes } from "./common";
+import { Theme, Themes, Storage } from "./common";
 import { ThemeForm } from "./themeForm";
 
 const themeForms: { [key: string]: ThemeForm } = {};
 
-const form = document.querySelector('form') as HTMLFormElement;
+const formTemplate = document.querySelector('template#theme-form') as HTMLTemplateElement;
+const themesContainer = document.querySelector('#themes-container') as HTMLElement;
 
-chrome.storage.sync.get('themes', (result) => {
+function createThemeForm(id: string, initialValue?: Theme) {
+    const fragment = formTemplate.content.cloneNode(true) as DocumentFragment;
+    (fragment.firstElementChild as HTMLFormElement).id = id;
+    themesContainer.appendChild(fragment);
+
+    const form = themesContainer.querySelector(`form#${id}`) as HTMLFormElement;
+
+    themeForms[id] = new ThemeForm(form, id, initialValue);
+}
+
+chrome.storage.sync.get('themes', (result: Storage) => {
     if (result.themes) {
-        const id = 'themer';
-        themeForms[id] = new ThemeForm(form, result.themes?.[id], id);
+        for (const id in result.themes) {
+            createThemeForm(id, result.themes[id]);
+        }
     }
 });
 
-form.addEventListener("change", updateThemes);
+document.querySelectorAll('#new-theme').forEach(element => {
+    element.addEventListener('click', () => {
+        const id = prompt('what id?');
+        if (id) {
+            createThemeForm(id);
+        }
+    });
+});
 
-form.addEventListener('submit', event => {
+themesContainer.addEventListener("change", updateThemes);
+
+themesContainer.addEventListener('submit', event => {
     updateThemes();
     event.preventDefault();
 });

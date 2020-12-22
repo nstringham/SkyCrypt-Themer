@@ -1,3 +1,7 @@
+export interface Storage {
+    themes?: Themes
+}
+
 export interface Themes {
     [key: string]: Theme
 }

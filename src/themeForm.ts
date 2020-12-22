@@ -9,7 +9,7 @@ export class ThemeForm {
     private bgBlurField: HTMLInputElement;
     private colorFields: { [key: string]: HTMLInputElement } = {};
 
-    constructor(element: HTMLElement, value: Theme, private id: string) {
+    constructor(element: HTMLElement, private id: string, value?: Theme) {
         this.nameField = element.querySelector("#name") as HTMLInputElement;
         this.authorField = element.querySelector("#author") as HTMLInputElement;
         this.logoField = element.querySelector("#logo") as HTMLInputElement;
@@ -29,7 +29,7 @@ export class ThemeForm {
                 }
             });
         });
-        this.theme = value;
+        this.theme = value || { name: '', author: '', official: false, logo: '' };
     }
 
     get theme(): Theme {
@@ -53,9 +53,9 @@ export class ThemeForm {
     }
 
     set theme(value: Theme) {
-        this.nameField.value = value?.name || '';
-        this.authorField.value = value?.author || '';
-        this.logoField.value = value?.logo || '';
+        this.nameField.value = value?.name;
+        this.authorField.value = value?.author;
+        this.logoField.value = value?.logo;
         this.bgField.value = value?.backgrounds?.bg?.webp || '';
         this.bgBlurField.value = value?.backgrounds?.bg_blur?.webp || '';
         for (const colorName in defaultTheme.colors) {
