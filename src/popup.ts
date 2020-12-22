@@ -18,6 +18,13 @@ function createThemeForm(id: string, initialValue?: Theme) {
 
   const form = themesContainer.querySelector(`form#${id}`) as HTMLFormElement;
 
+  form.querySelector("#delete-theme")?.addEventListener("click", () => {
+    if (confirm("are you sure?")) {
+      delete themeForms[id];
+      form.remove();
+    }
+  });
+
   themeForms[id] = new ThemeForm(form, id, initialValue);
 }
 
