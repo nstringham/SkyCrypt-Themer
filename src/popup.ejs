@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <div id="themes-container"></div>
+    <button id="new-theme">New Theme</button>
+    <template id="theme-form">
+        <form>
+            <div>
+                <label>
+                    <span>Theme Name:</span>
+                    <input id="name" type="text" autocomplete="off" required>
+                </label>
+            </div>
+            <div>
+                <label>
+                    <span>Author:</span>
+                    <input id="author" type="text" autocomplete="name" required>
+                </label>
+            </div>
+            <div>
+                <label>
+                    <span>Logo Icon:</span>
+                    <input id="logo" type="url" required>
+                </label>
+            </div>
+            <div>
+                <label>
+                    <span>Background:</span>
+                    <input id="bg" type="url">
+                </label>
+            </div>
+            <div>
+                <label>
+                    <span>Blurred Background (Firefox Only):</span>
+                    <input id="bg-blur" type="url">
+                </label>
+            </div>
+            <% 
+            const colorNames = ['icon', 'line', 'link', 'hover', 'maxed', 'gold', 'skillbar', 'maxedbar'];
+
+            for (const colorName of colorNames) {
+            %>
+            <div>
+                <label>
+                    <span><%= colorName %> color:</span>
+                    <input id="<%= colorName %>-color" type="color">
+                    <button id="<%= colorName %>-default" type="button">use default</button>
+                </label>
+            </div>
+            <% } %>
+            <div>
+                <button id="use-theme" type="button">Use Theme</button>
+            </div>
+        </form>
+    </template>
+    <script type="module" src="popup.js"></script>
+</body>
+
+</html>
