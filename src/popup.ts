@@ -12,7 +12,14 @@ chrome.storage.sync.get('themes', (result) => {
     }
 });
 
-form.addEventListener("change", () => {
+form.addEventListener("change", updateThemes);
+
+form.addEventListener('submit', event => {
+    updateThemes();
+    event.preventDefault();
+});
+
+function updateThemes() {
     const themes: Themes = {}
     for (const key in themeForms) {
         themes[key] = themeForms[key].theme;
