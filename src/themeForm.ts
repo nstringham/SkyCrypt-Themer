@@ -19,6 +19,7 @@ export class ThemeForm {
             this.colorFields[colorName] = element.querySelector(`#${colorName}-color`) as HTMLInputElement;
             element.querySelector<HTMLButtonElement>(`#${colorName}-default`)?.addEventListener('click', () => {
                 this.colorFields[colorName].value = defaultTheme.colors[colorName as ThemeColorName]
+                this.colorFields[colorName].dispatchEvent(new Event('change', { bubbles: true }));
             })
         }
         element.querySelector<HTMLButtonElement>('#use-theme')?.addEventListener('click', () => {
