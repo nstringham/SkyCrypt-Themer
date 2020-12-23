@@ -18,6 +18,7 @@ export class ThemeForm {
     element: HTMLElement,
     private id: string,
     private port: chrome.runtime.Port,
+    deletionCallback: () => void,
     value?: Theme
   ) {
     this.nameField = element.querySelector("#name") as HTMLInputElement;
@@ -49,6 +50,11 @@ export class ThemeForm {
         });
       });
     }
+
+    element
+      .querySelector("#delete-theme")
+      ?.addEventListener("click", deletionCallback);
+
     element.querySelector("#use-theme")?.addEventListener("click", () => {
       this.port.postMessage({
         type: "switch-theme",
