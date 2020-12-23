@@ -8,6 +8,7 @@
         "strict": true,
         "types": [
             "chrome",
+            "wicg-file-system-access",
             "node"
         ],
         "typeRoots": [

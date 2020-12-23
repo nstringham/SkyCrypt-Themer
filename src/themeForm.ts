@@ -51,16 +51,21 @@ export class ThemeForm {
       });
     }
 
-    element
-      .querySelector("#delete-theme")
-      ?.addEventListener("click", deletionCallback);
-
     element.querySelector("#use-theme")?.addEventListener("click", () => {
       this.port.postMessage({
         type: "switch-theme",
         theme: id,
       });
     });
+
+    element
+      .querySelector("#delete-theme")
+      ?.addEventListener("click", () => deletionCallback());
+
+    element
+      .querySelector("#export-theme")
+      ?.addEventListener("click", () => this.saveFile());
+
     this.theme = value || { name: "", author: "", official: false, logo: "" };
   }
 
@@ -102,5 +107,21 @@ export class ThemeForm {
         value?.colors?.[colorName as ThemeColorName] ||
         defaultTheme.colors[colorName as ThemeColorName];
     }
+  }
+
+  public async saveFile(): Promise<void> {
+    const fileHandle = await window.showSaveFilePicker({
+      types: [
+        {
+          description: "SkyCrypt Theme JSON",
+          accept: {
+            "application/json": [".json"],
+          },
+        },
+      ],
+    });
+    const writable = await fileHandle.createWritable();
+    await writable.write(JSON.stringify(this.theme));
+    await writable.close();
   }
 }

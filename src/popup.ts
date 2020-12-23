@@ -22,7 +22,10 @@ const themesContainer = document.querySelector(
   "#themes-container"
 ) as HTMLElement;
 
-function createThemeForm(id: string, initialValue?: Theme) {
+function createThemeForm(initialValue?: Theme, id?: string) {
+  if (!id) {
+    id = "themer-" + Date.now().toString(36);
+  }
   const fragment = formTemplate.content.cloneNode(true) as DocumentFragment;
   (fragment.firstElementChild as HTMLFormElement).id = id;
   themesContainer.appendChild(fragment);
@@ -31,7 +34,7 @@ function createThemeForm(id: string, initialValue?: Theme) {
 
   const deletionCallback = () => {
     if (confirm("are you sure?")) {
-      delete themeForms[id];
+      delete themeForms[id as string];
       form.remove();
     }
   };
@@ -48,17 +51,25 @@ function createThemeForm(id: string, initialValue?: Theme) {
 chrome.storage.sync.get("themes", (result: Storage) => {
   if (result.themes) {
     for (const id in result.themes) {
-      createThemeForm(id, result.themes[id]);
+      createThemeForm(result.themes[id], id);
     }
   }
 });
 
 document.querySelectorAll("#new-theme").forEach((element) => {
   element.addEventListener("click", () => {
-    const id = prompt("what id?");
-    if (id) {
-      createThemeForm(id);
-    }
+    createThemeForm();
+  });
+});
+
+document.querySelectorAll("#import-theme").forEach((element) => {
+  element.addEventListener("click", async () => {
+    const [fileHandle] = await window.showOpenFilePicker();
+    const file = await fileHandle.getFile();
+    const contents = await file.text();
+    console.log(contents);
+    createThemeForm(JSON.parse(contents));
+    setThemes();
   });
 });
 
