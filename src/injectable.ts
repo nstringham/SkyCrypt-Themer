@@ -9,6 +9,10 @@ declare function switchTheme(theme: string): void;
 
 declare function loadTheme(currentTheme: string): void;
 
+let animationFrameID = -1;
+
+const rootStyle = document.documentElement.style;
+
 window.addEventListener("message", (event) => {
   if (event.source === window) {
     switch (event.data?.type) {
@@ -23,6 +27,17 @@ window.addEventListener("message", (event) => {
           }
           makeButton(key);
         }
+        break;
+      case "set-styles":
+        if (animationFrameID >= 0) {
+          cancelAnimationFrame(animationFrameID);
+        }
+        animationFrameID = requestAnimationFrame(() => {
+          for (const key in event.data.styles) {
+            rootStyle.setProperty(key, event.data.styles[key]);
+          }
+          animationFrameID = -1;
+        });
         break;
       case "switch-theme":
         switchTheme(event.data.theme);

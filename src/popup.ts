@@ -5,6 +5,14 @@ import "@material/mwc-button";
 import "@material/mwc-textfield";
 import "@material/mwc-icon-button";
 
+let port: chrome.runtime.Port;
+
+chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+  if (tabs[0].id) {
+    port = chrome.tabs.connect(tabs[0].id);
+  }
+});
+
 const themeForms: { [key: string]: ThemeForm } = {};
 
 const formTemplate = document.querySelector(
@@ -28,7 +36,12 @@ function createThemeForm(id: string, initialValue?: Theme) {
     }
   });
 
-  themeForms[id] = new ThemeForm(form, id, initialValue);
+  themeForms[id] = new ThemeForm(
+    form,
+    id,
+    port,
+    initialValue
+  );
 }
 
 chrome.storage.sync.get("themes", (result: Storage) => {
@@ -48,14 +61,14 @@ document.querySelectorAll("#new-theme").forEach((element) => {
   });
 });
 
-themesContainer.addEventListener("input", updateThemes);
+themesContainer.addEventListener("change", setThemes);
 
 themesContainer.addEventListener("submit", (event) => {
-  updateThemes();
+  setThemes();
   event.preventDefault();
 });
 
-function updateThemes() {
+function setThemes() {
   const themes: Themes = {};
   for (const key in themeForms) {
     themes[key] = themeForms[key].theme;

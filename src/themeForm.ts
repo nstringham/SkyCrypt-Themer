@@ -1,4 +1,10 @@
-import { Theme, defaultTheme, ThemeColors, ThemeColorName } from "./common";
+import {
+  Theme,
+  defaultTheme,
+  ThemeColors,
+  ThemeColorName,
+  hexToRGB,
+} from "./common";
 
 export class ThemeForm {
   private nameField: HTMLInputElement;
@@ -8,7 +14,12 @@ export class ThemeForm {
   private bgBlurField: HTMLInputElement;
   private colorFields: { [key: string]: HTMLInputElement } = {};
 
-  constructor(element: HTMLElement, private id: string, value?: Theme) {
+  constructor(
+    element: HTMLElement,
+    private id: string,
+    private port: chrome.runtime.Port,
+    value?: Theme
+  ) {
     this.nameField = element.querySelector("#name") as HTMLInputElement;
     this.authorField = element.querySelector("#author") as HTMLInputElement;
     this.logoField = element.querySelector("#logo") as HTMLInputElement;
@@ -27,15 +38,21 @@ export class ThemeForm {
             new Event("input", { bubbles: true })
           );
         });
+      this.colorFields[colorName].addEventListener("input", () => {
+        const value = this.colorFields[colorName].value;
+        this.port.postMessage({
+          type: "set-styles",
+          styles: {
+            [`--${colorName}-hex`]: value,
+            [`--${colorName}-rgb`]: hexToRGB(value),
+          },
+        });
+      });
     }
     element.querySelector("#use-theme")?.addEventListener("click", () => {
-      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        if (tabs[0].id) {
-          chrome.tabs.sendMessage(tabs[0].id, {
-            type: "switch-theme",
-            theme: this.id,
-          });
-        }
+      this.port.postMessage({
+        type: "switch-theme",
+        theme: id,
       });
     });
     this.theme = value || { name: "", author: "", official: false, logo: "" };

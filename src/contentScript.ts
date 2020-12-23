@@ -33,8 +33,10 @@ window.addEventListener("message", (event) => {
   }
 });
 
-chrome.runtime.onMessage.addListener((request) => {
-  if (request.type === "switch-theme") {
-    window.postMessage(request, "https://sky.shiiyu.moe");
-  }
+chrome.runtime.onConnect.addListener((port) => {
+  port.onMessage.addListener((request) => {
+    if (["switch-theme", "set-styles"].includes(request.type)) {
+      window.postMessage(request, "https://sky.shiiyu.moe");
+    }
+  });
 });
