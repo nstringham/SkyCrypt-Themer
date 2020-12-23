@@ -24,7 +24,7 @@ export class ThemeForm {
           this.colorFields[colorName].value =
             defaultTheme.colors[colorName as ThemeColorName];
           this.colorFields[colorName].dispatchEvent(
-            new Event("change", { bubbles: true })
+            new Event("input", { bubbles: true })
           );
         });
     }

@@ -48,7 +48,7 @@ document.querySelectorAll("#new-theme").forEach((element) => {
   });
 });
 
-themesContainer.addEventListener("change", updateThemes);
+themesContainer.addEventListener("input", updateThemes);
 
 themesContainer.addEventListener("submit", (event) => {
   updateThemes();
