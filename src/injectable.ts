@@ -9,10 +9,6 @@ declare function switchTheme(theme: string): void;
 
 declare function loadTheme(currentTheme: string): void;
 
-let animationFrameID = -1;
-
-const rootStyle = document.documentElement.style;
-
 window.addEventListener("message", (event) => {
   if (event.source === window) {
     switch (event.data?.type) {
@@ -22,22 +18,12 @@ window.addEventListener("message", (event) => {
             event.data.themes[key].name = "Themer Theme";
           }
           extra.themes[key] = event.data.themes[key];
-          if (localStorage.getItem("currentTheme") === key) {
-            loadTheme(key);
-          }
-          makeButton(key);
+          updateButton(key);
         }
-        break;
-      case "set-styles":
-        if (animationFrameID >= 0) {
-          cancelAnimationFrame(animationFrameID);
+        const currentTheme = localStorage.getItem("currentTheme");
+        if (currentTheme) {
+          loadTheme(currentTheme);
         }
-        animationFrameID = requestAnimationFrame(() => {
-          for (const key in event.data.styles) {
-            rootStyle.setProperty(key, event.data.styles[key]);
-          }
-          animationFrameID = -1;
-        });
         break;
       case "switch-theme":
         switchTheme(event.data.theme);

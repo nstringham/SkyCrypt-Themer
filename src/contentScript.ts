@@ -33,10 +33,27 @@ window.addEventListener("message", (event) => {
   }
 });
 
+let animationFrameID = -1;
+
+const rootStyle = document.documentElement.style;
+
 chrome.runtime.onConnect.addListener((port) => {
   port.onMessage.addListener((request) => {
-    if (["switch-theme", "set-styles"].includes(request.type)) {
-      window.postMessage(request, "https://sky.shiiyu.moe");
+    switch (request?.type) {
+      case "set-styles":
+        if (animationFrameID >= 0) {
+          cancelAnimationFrame(animationFrameID);
+        }
+        animationFrameID = requestAnimationFrame(() => {
+          for (const key in request.styles) {
+            rootStyle.setProperty(key, request.styles[key]);
+          }
+          animationFrameID = -1;
+        });
+        break;
+      case "switch-theme":
+        window.postMessage(request, "https://sky.shiiyu.moe");
+        break;
     }
   });
 });
