@@ -34,12 +34,15 @@ window.addEventListener("message", (event) => {
 
 const themesBox = document.getElementById("themes_box");
 
-function makeButton(themeName: string) {
-  if (!document.getElementById(`${themeName}-theme`)) {
-    const theme = extra.themes[themeName];
-    const div = document.createElement("div");
-    div.className = "theme";
-    div.innerHTML = /*html*/ `
+function updateButton(themeName: string) {
+  const theme = extra.themes[themeName];
+  if (theme) {
+    const themeElement =
+      document.getElementById(`${themeName}-theme`)?.parentElement ||
+      themesBox?.appendChild(document.createElement("div"));
+    if (themeElement) {
+      themeElement.className = "theme";
+      themeElement.innerHTML = /*html*/ `
             <img class="theme-icon" src="${
               theme.logo || "/resources/img/logo_square.svg"
             }">
@@ -47,7 +50,7 @@ function makeButton(themeName: string) {
             <div class="theme-author">by <span>${theme.author}</span></div>
             <div class="switch_themes_button" id="${themeName}-theme" onclick="switchTheme('${themeName}')">Switch</div>
         `;
-    themesBox?.appendChild(div);
+    }
   }
 }
 
