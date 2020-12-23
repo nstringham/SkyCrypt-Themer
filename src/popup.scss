@@ -8,6 +8,35 @@ body {
             div {
                 margin: 8px;
                 white-space: nowrap;
+                .colorInput {
+                    position: relative;
+                    border-radius: var(--mdc-shape-small);
+                    padding: 8px;
+                    span {
+                        color: white;
+                        text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+                    }
+                    input[type="color"] {
+                        visibility: hidden;
+                        position: absolute;
+                        inset: 0;
+                        z-index: -1;
+
+                        &,
+                        &::-webkit-color-swatch-wrapper,
+                        &::-webkit-color-swatch {
+                            padding: 0;
+                            border: none;
+                            height: 100%;
+                            width: 100%;
+                        }
+
+                        &::-webkit-color-swatch {
+                            visibility: visible;
+                            border-radius: var(--mdc-shape-small);
+                        }
+                    }
+                }
             }
         }
     }
