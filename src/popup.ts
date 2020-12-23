@@ -15,12 +15,8 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
 
 const themeForms: { [key: string]: ThemeForm } = {};
 
-const formTemplate = document.querySelector(
-  "template#theme-form"
-) as HTMLTemplateElement;
-const themesContainer = document.querySelector(
-  "#themes-container"
-) as HTMLElement;
+const formTemplate = document.querySelector("template#theme-form") as HTMLTemplateElement;
+const themesContainer = document.querySelector("#themes-container") as HTMLElement;
 
 function createThemeForm(initialValue?: Theme, id?: string) {
   if (!id) {
@@ -39,13 +35,7 @@ function createThemeForm(initialValue?: Theme, id?: string) {
     }
   };
 
-  themeForms[id] = new ThemeForm(
-    form,
-    id,
-    port,
-    deletionCallback,
-    initialValue
-  );
+  themeForms[id] = new ThemeForm(form, id, port, deletionCallback, initialValue);
 }
 
 chrome.storage.sync.get("themes", (result: Storage) => {

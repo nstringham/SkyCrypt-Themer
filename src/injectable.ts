@@ -38,14 +38,11 @@ function updateButton(themeName: string) {
   const theme = extra.themes[themeName];
   if (theme) {
     const themeElement =
-      document.getElementById(`${themeName}-theme`)?.parentElement ||
-      themesBox?.appendChild(document.createElement("div"));
+      document.getElementById(`${themeName}-theme`)?.parentElement || themesBox?.appendChild(document.createElement("div"));
     if (themeElement) {
       themeElement.className = "theme";
       themeElement.innerHTML = /*html*/ `
-            <img class="theme-icon" src="${
-              theme.logo || "/resources/img/logo_square.svg"
-            }">
+            <img class="theme-icon" src="${theme.logo || "/resources/img/logo_square.svg"}">
             <span class="theme-name">${theme.name}</span>
             <div class="theme-author">by <span>${theme.author}</span></div>
             <div class="switch_themes_button" id="${themeName}-theme" onclick="switchTheme('${themeName}')">Switch</div>

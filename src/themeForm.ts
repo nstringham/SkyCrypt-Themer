@@ -1,10 +1,4 @@
-import {
-  Theme,
-  defaultTheme,
-  ThemeColors,
-  ThemeColorName,
-  hexToRGB,
-} from "./common";
+import { Theme, defaultTheme, ThemeColors, ThemeColorName, hexToRGB } from "./common";
 
 export class ThemeForm {
   private nameField: HTMLInputElement;
@@ -27,18 +21,11 @@ export class ThemeForm {
     this.bgField = element.querySelector("#bg") as HTMLInputElement;
     this.bgBlurField = element.querySelector("#bg-blur") as HTMLInputElement;
     for (const colorName in defaultTheme.colors) {
-      this.colorFields[colorName] = element.querySelector(
-        `#${colorName}-color`
-      ) as HTMLInputElement;
-      element
-        .querySelector(`#${colorName}-default`)
-        ?.addEventListener("click", () => {
-          this.colorFields[colorName].value =
-            defaultTheme.colors[colorName as ThemeColorName];
-          this.colorFields[colorName].dispatchEvent(
-            new Event("input", { bubbles: true })
-          );
-        });
+      this.colorFields[colorName] = element.querySelector(`#${colorName}-color`) as HTMLInputElement;
+      element.querySelector(`#${colorName}-default`)?.addEventListener("click", () => {
+        this.colorFields[colorName].value = defaultTheme.colors[colorName as ThemeColorName];
+        this.colorFields[colorName].dispatchEvent(new Event("input", { bubbles: true }));
+      });
       this.colorFields[colorName].addEventListener("input", () => {
         const value = this.colorFields[colorName].value;
         this.port.postMessage({
@@ -58,13 +45,9 @@ export class ThemeForm {
       });
     });
 
-    element
-      .querySelector("#delete-theme")
-      ?.addEventListener("click", () => deletionCallback());
+    element.querySelector("#delete-theme")?.addEventListener("click", () => deletionCallback());
 
-    element
-      .querySelector("#export-theme")
-      ?.addEventListener("click", () => this.saveFile());
+    element.querySelector("#export-theme")?.addEventListener("click", () => this.saveFile());
 
     this.theme = value || { name: "", author: "", official: false, logo: "" };
   }
@@ -72,10 +55,7 @@ export class ThemeForm {
   get theme(): Theme {
     const colors: ThemeColors = {};
     for (const colorName in defaultTheme.colors) {
-      if (
-        this.colorFields[colorName].value !==
-        defaultTheme.colors[colorName as ThemeColorName].toLocaleLowerCase()
-      ) {
+      if (this.colorFields[colorName].value !== defaultTheme.colors[colorName as ThemeColorName].toLocaleLowerCase()) {
         colors[colorName as ThemeColorName] = this.colorFields[colorName].value;
       }
     }
@@ -85,12 +65,8 @@ export class ThemeForm {
       official: false,
       logo: this.logoField.value,
       backgrounds: {
-        bg: this.bgField.value.length
-          ? { webp: this.bgField.value }
-          : undefined,
-        bg_blur: this.bgBlurField.value.length
-          ? { webp: this.bgBlurField.value }
-          : undefined,
+        bg: this.bgField.value.length ? { webp: this.bgField.value } : undefined,
+        bg_blur: this.bgBlurField.value.length ? { webp: this.bgBlurField.value } : undefined,
       },
       colors,
     };
@@ -104,8 +80,7 @@ export class ThemeForm {
     this.bgBlurField.value = value?.backgrounds?.bg_blur?.webp || "";
     for (const colorName in defaultTheme.colors) {
       this.colorFields[colorName].value =
-        value?.colors?.[colorName as ThemeColorName] ||
-        defaultTheme.colors[colorName as ThemeColorName];
+        value?.colors?.[colorName as ThemeColorName] || defaultTheme.colors[colorName as ThemeColorName];
     }
   }
 

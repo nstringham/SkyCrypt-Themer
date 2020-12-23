@@ -34,15 +34,7 @@ export interface ThemeColors {
   maxedbar?: Color;
 }
 
-export type ThemeColorName =
-  | "icon"
-  | "line"
-  | "link"
-  | "hover"
-  | "maxed"
-  | "gold"
-  | "skillbar"
-  | "maxedbar";
+export type ThemeColorName = "icon" | "line" | "link" | "hover" | "maxed" | "gold" | "skillbar" | "maxedbar";
 
 export type Color = string;
 
@@ -75,9 +67,5 @@ export const defaultTheme = {
 };
 
 export function hexToRGB(hex: Color): string {
-  return [
-    parseInt(hex[1] + hex[2], 16),
-    parseInt(hex[3] + hex[4], 16),
-    parseInt(hex[5] + hex[6], 16),
-  ].join(", ");
+  return [parseInt(hex[1] + hex[2], 16), parseInt(hex[3] + hex[4], 16), parseInt(hex[5] + hex[6], 16)].join(", ");
 }
