@@ -13,14 +13,14 @@ window.addEventListener("message", (event) => {
   if (event.source === window) {
     switch (event.data?.type) {
       case "set-themes":
+        const currentTheme = localStorage.getItem("currentTheme");
         for (const key in event.data.themes) {
           if (!event.data.themes[key].name) {
             event.data.themes[key].name = "Themer Theme";
           }
           extra.themes[key] = event.data.themes[key];
-          updateButton(key);
+          updateButton(key, currentTheme === key);
         }
-        const currentTheme = localStorage.getItem("currentTheme");
         if (currentTheme) {
           loadTheme(currentTheme);
         }
@@ -34,7 +34,7 @@ window.addEventListener("message", (event) => {
 
 const themesBox = document.getElementById("themes_box");
 
-function updateButton(themeName: string) {
+function updateButton(themeName: string, selected?: boolean) {
   const theme = extra.themes[themeName];
   if (theme) {
     const themeElement =
@@ -42,11 +42,13 @@ function updateButton(themeName: string) {
     if (themeElement) {
       themeElement.className = "theme";
       themeElement.innerHTML = /*html*/ `
-            <img class="theme-icon" src="${theme.logo || "/resources/img/logo_square.svg"}">
-            <span class="theme-name">${theme.name}</span>
-            <div class="theme-author">by <span>${theme.author}</span></div>
-            <div class="switch_themes_button" id="${themeName}-theme" onclick="switchTheme('${themeName}')">Switch</div>
-        `;
+        <img class="theme-icon" src="${theme.logo || "/resources/img/logo_square.svg"}">
+        <span class="theme-name">${theme.name}</span>
+        <div class="theme-author">by <span>${theme.author}</span></div>
+        <div class=${
+          selected ? "selected_button" : "switch_themes_button"
+        } id="${themeName}-theme" onclick="switchTheme('${themeName}')">${selected ? "In Use" : "Switch"}</div>
+      `;
     }
   }
 }
