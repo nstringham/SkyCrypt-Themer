@@ -54,11 +54,15 @@ document.querySelectorAll("#new-theme").forEach((element) => {
 
 document.querySelectorAll("#import-theme").forEach((element) => {
   element.addEventListener("click", async () => {
-    const [fileHandle] = await window.showOpenFilePicker();
-    const file = await fileHandle.getFile();
-    const contents = await file.text();
-    createThemeForm(JSON.parse(contents));
-    setThemes();
+    try {
+      const [fileHandle] = await window.showOpenFilePicker();
+      const file = await fileHandle.getFile();
+      const contents = await file.text();
+      createThemeForm(JSON.parse(contents));
+      setThemes();
+    } catch (error) {
+      console.error(error);
+    }
   });
 });
 

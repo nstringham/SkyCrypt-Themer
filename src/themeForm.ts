@@ -85,18 +85,22 @@ export class ThemeForm {
   }
 
   public async saveFile(): Promise<void> {
-    const fileHandle = await window.showSaveFilePicker({
-      types: [
-        {
-          description: "SkyCrypt Theme JSON",
-          accept: {
-            "application/json": [".json"],
+    try {
+      const fileHandle = await window.showSaveFilePicker({
+        types: [
+          {
+            description: "SkyCrypt Theme JSON",
+            accept: {
+              "application/json": [".json"],
+            },
           },
-        },
-      ],
-    });
-    const writable = await fileHandle.createWritable();
-    await writable.write(JSON.stringify(this.theme));
-    await writable.close();
+        ],
+      });
+      const writable = await fileHandle.createWritable();
+      await writable.write(JSON.stringify(this.theme));
+      await writable.close();
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
