@@ -9,7 +9,8 @@ export interface Themes {
 export interface Theme {
   name: string;
   author: string;
-  official: boolean;
+  official?: true;
+  community?: true;
   logo: ImageUrl;
   backgrounds?: {
     bg?: {
