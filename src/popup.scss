@@ -1,5 +1,8 @@
 :root {
     --mdc-shape-small: 28px;
+
+    --scroll-track-color: #f1f1f1;
+    --scroll-thumb-color: #c1c1c1;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -14,6 +17,9 @@
         --mdc-text-field-ink-color: rgba(255, 255, 255, 0.87);
         --mdc-text-field-label-ink-color: rgba(255, 255, 255, 0.6);
         --mdc-text-field-disabled-ink-color: rgba(255, 255, 255, 0.37);
+
+        --scroll-track-color: #222222;
+        --scroll-thumb-color: #383838;
     }
 }
 
@@ -58,4 +64,19 @@ body {
             }
         }
     }
+}
+
+::-webkit-scrollbar {
+    height: 12px;
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 6px;
+    background-color: var(--scroll-track-color);
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background-color: var(--scroll-thumb-color);
 }
