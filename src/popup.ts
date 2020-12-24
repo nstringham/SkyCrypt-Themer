@@ -57,7 +57,6 @@ document.querySelectorAll("#import-theme").forEach((element) => {
     const [fileHandle] = await window.showOpenFilePicker();
     const file = await fileHandle.getFile();
     const contents = await file.text();
-    console.log(contents);
     createThemeForm(JSON.parse(contents));
     setThemes();
   });
@@ -79,5 +78,3 @@ function setThemes() {
     themes,
   });
 }
-
-console.log(themeForms);
