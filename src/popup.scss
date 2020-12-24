@@ -28,18 +28,27 @@ body {
     margin: 0;
     color: var(--mdc-theme-on-surface);
     background-color: var(--mdc-theme-background);
+    font-family: "Roboto";
     #themes-container {
         form {
             div {
                 margin: 8px;
                 white-space: nowrap;
                 .colorInput {
+                    display: inline-flex;
+                    min-width: 200px;
                     position: relative;
                     border-radius: var(--mdc-shape-small);
-                    padding: 8px;
+                    height: 56;
+                    align-items: center;
+                    justify-content: space-between;
                     span {
+                        padding-left: max(16px, calc(var(--mdc-shape-small, 4px) + 4px));
                         color: white;
                         text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+                        text-transform: capitalize;
+                        font-weight: 500;
+                        font-size: 1rem;
                     }
                     input[type="color"] {
                         visibility: hidden;
