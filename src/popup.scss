@@ -1,8 +1,26 @@
 :root {
     --mdc-shape-small: 28px;
 }
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --mdc-theme-surface: #121212;
+        --mdc-theme-background: #121212;
+        --mdc-theme-on-surface: #ffffff;
+
+        --mdc-text-field-outlined-idle-border-color: rgba(255, 255, 255, 0.38);
+        --mdc-text-field-outlined-hover-border-color: rgba(255, 255, 255, 0.87);
+        --mdc-text-field-outlined-disabled-border-color: rgba(255, 255, 255, 0.06);
+        --mdc-text-field-ink-color: rgba(255, 255, 255, 0.87);
+        --mdc-text-field-label-ink-color: rgba(255, 255, 255, 0.6);
+        --mdc-text-field-disabled-ink-color: rgba(255, 255, 255, 0.37);
+    }
+}
+
 body {
     margin: 0;
+    color: var(--mdc-theme-on-surface);
+    background-color: var(--mdc-theme-background);
     #themes-container {
         form {
             div {
