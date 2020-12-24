@@ -25,14 +25,16 @@
 }
 
 body {
-    margin: 0;
+    margin: 16px;
     color: var(--mdc-theme-on-surface);
     background-color: var(--mdc-theme-background);
     font-family: "Roboto";
     #themes-container {
         form {
+            display: grid;
+            gap: 8px;
+            margin-bottom: 24px;
             div {
-                margin: 8px;
                 white-space: nowrap;
                 .colorInput {
                     display: inline-flex;
