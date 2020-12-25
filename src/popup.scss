@@ -25,7 +25,7 @@
 }
 
 body {
-    min-width: 480px;
+    min-width: 500px;
     margin: 24px;
     color: var(--mdc-theme-on-surface);
     background-color: var(--mdc-theme-background);
@@ -37,7 +37,7 @@ body {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 16px;
-        margin-bottom: 24px;
+        margin-bottom: 48px;
         .colorInput {
             display: inline-flex;
             min-width: 200px;
@@ -81,6 +81,7 @@ body {
 .button-row {
     grid-column: 1 / -1;
     display: flex;
+    justify-content: flex-end;
     gap: 16px;
     mwc-button {
         white-space: nowrap;
