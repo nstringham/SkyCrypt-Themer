@@ -5,7 +5,6 @@ export class ThemeForm {
   private authorField: HTMLInputElement;
   private logoField: HTMLInputElement;
   private bgField: HTMLInputElement;
-  private bgBlurField: HTMLInputElement;
   private colorFields: { [key: string]: HTMLInputElement } = {};
 
   constructor(
@@ -19,7 +18,6 @@ export class ThemeForm {
     this.authorField = element.querySelector("#author") as HTMLInputElement;
     this.logoField = element.querySelector("#logo") as HTMLInputElement;
     this.bgField = element.querySelector("#bg") as HTMLInputElement;
-    this.bgBlurField = element.querySelector("#bg-blur") as HTMLInputElement;
     for (const colorName in defaultTheme.colors) {
       this.colorFields[colorName] = element.querySelector(`#${colorName}-color`) as HTMLInputElement;
       element.querySelector(`#${colorName}-default`)?.addEventListener("click", () => {
@@ -66,7 +64,6 @@ export class ThemeForm {
       logo: this.logoField.value,
       backgrounds: {
         bg: this.bgField.value.length ? { webp: this.bgField.value } : undefined,
-        bg_blur: this.bgBlurField.value.length ? { webp: this.bgBlurField.value } : undefined,
       },
       colors,
     };
@@ -77,7 +74,6 @@ export class ThemeForm {
     this.authorField.value = value?.author;
     this.logoField.value = value?.logo;
     this.bgField.value = value?.backgrounds?.bg?.webp || "";
-    this.bgBlurField.value = value?.backgrounds?.bg_blur?.webp || "";
     for (const colorName in defaultTheme.colors) {
       this.colorFields[colorName].value =
         value?.colors?.[colorName as ThemeColorName] || defaultTheme.colors[colorName as ThemeColorName];
