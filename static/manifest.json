@@ -42,7 +42,8 @@
         }
     },
     "web_accessible_resources": [
-        "injectable.js"
+        "injectable.js",
+        "logo-128.png"
     ],
     "manifest_version": 2
 }

@@ -42,7 +42,7 @@ function updateButton(themeName: string, selected?: boolean) {
     if (themeElement) {
       themeElement.className = "theme";
       themeElement.innerHTML = /*html*/ `
-        <img class="theme-icon" src="${theme.logo || "/resources/img/logo_square.svg"}">
+        <img class="theme-icon" src="${theme.logo}">
         <span class="theme-name">${theme.name}</span>
         <div class="theme-author">by <span>${theme.author}</span></div>
         <div class=${
