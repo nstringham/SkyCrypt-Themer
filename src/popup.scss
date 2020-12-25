@@ -25,56 +25,65 @@
 }
 
 body {
-    margin: 16px;
+    min-width: 480px;
+    margin: 24px;
     color: var(--mdc-theme-on-surface);
     background-color: var(--mdc-theme-background);
     font-family: "Roboto";
-    #themes-container {
-        form {
-            display: grid;
-            gap: 8px;
-            margin-bottom: 24px;
-            div {
-                white-space: nowrap;
-                .colorInput {
-                    display: inline-flex;
-                    min-width: 200px;
-                    position: relative;
+}
+
+#themes-container {
+    form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-bottom: 24px;
+        .colorInput {
+            display: inline-flex;
+            min-width: 200px;
+            position: relative;
+            border-radius: var(--mdc-shape-small);
+            height: 56;
+            align-items: center;
+            justify-content: space-between;
+            span {
+                padding-left: max(16px, calc(var(--mdc-shape-small, 4px) + 4px));
+                color: white;
+                text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+                text-transform: capitalize;
+                font-weight: 500;
+                font-size: 1rem;
+            }
+            input[type="color"] {
+                visibility: hidden;
+                position: absolute;
+                inset: 0;
+                z-index: -1;
+
+                &,
+                &::-webkit-color-swatch-wrapper,
+                &::-webkit-color-swatch {
+                    padding: 0;
+                    border: none;
+                    height: 100%;
+                    width: 100%;
+                }
+
+                &::-webkit-color-swatch {
+                    visibility: visible;
                     border-radius: var(--mdc-shape-small);
-                    height: 56;
-                    align-items: center;
-                    justify-content: space-between;
-                    span {
-                        padding-left: max(16px, calc(var(--mdc-shape-small, 4px) + 4px));
-                        color: white;
-                        text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
-                        text-transform: capitalize;
-                        font-weight: 500;
-                        font-size: 1rem;
-                    }
-                    input[type="color"] {
-                        visibility: hidden;
-                        position: absolute;
-                        inset: 0;
-                        z-index: -1;
-
-                        &,
-                        &::-webkit-color-swatch-wrapper,
-                        &::-webkit-color-swatch {
-                            padding: 0;
-                            border: none;
-                            height: 100%;
-                            width: 100%;
-                        }
-
-                        &::-webkit-color-swatch {
-                            visibility: visible;
-                            border-radius: var(--mdc-shape-small);
-                        }
-                    }
                 }
             }
         }
+    }
+}
+
+.button-row {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: 16px;
+    mwc-button {
+        white-space: nowrap;
     }
 }
 
