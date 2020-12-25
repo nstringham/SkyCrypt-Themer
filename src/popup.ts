@@ -32,6 +32,7 @@ function createThemeForm(initialValue?: Theme, id?: string) {
     if (confirm("are you sure?")) {
       delete themeForms[id as string];
       form.remove();
+      setThemes();
     }
   };
 
