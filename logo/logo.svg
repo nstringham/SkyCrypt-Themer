@@ -1,0 +1,12 @@
+<svg width="120" height="120" xmlns="http://www.w3.org/2000/svg">
+    <title>SkyCrypt Logo</title>
+    <pattern id="background" patternUnits="userSpaceOnUse" width="100%" height="100%">
+        <image href="./rainbow.png" x="0" y="0" width="100%" height="100%" />
+    </pattern>
+    <rect rx="16" height="120" width="120" y="0" x="0" fill="url(#background)" />
+    <g fill="#ffffff">
+        <rect rx="4" height="28" width="19" y="69" x="22" />
+        <rect rx="4" height="75" width="19" y="22" x="50" />
+        <rect rx="4" height="47" width="19" y="50" x="79" />
+    </g>
+</svg>

@@ -7,7 +7,7 @@
         "declarativeContent"
     ],
     "icons": {
-        "512": "images/logo-512.png"
+        "128": "logo-128.png"
     },
     "background": {
         "scripts": [
@@ -38,7 +38,7 @@
     "page_action": {
         "default_popup": "popup.html",
         "default_icon": {
-            "512": "images/logo-512.png"
+            "128": "logo-128.png"
         }
     },
     "web_accessible_resources": [
