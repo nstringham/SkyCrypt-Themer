@@ -5,7 +5,7 @@ scriptElement.type = "module";
 scriptElement.src = chrome.runtime.getURL("injectable.js");
 document.head.appendChild(scriptElement);
 
-const logoUrl = chrome.runtime.getURL("logo-128.png");
+const logoUrl = chrome.runtime.getURL("assets/logo-128.png");
 
 function sendThemes(themes: Themes) {
   for (const i in themes) {

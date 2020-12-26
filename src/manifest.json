@@ -1,13 +1,12 @@
 {
     "name": "SkyCrypt Themer",
-    "version": "1.0.0",
     "description": "Create themes for SkyCrypt",
     "permissions": [
         "storage",
         "declarativeContent"
     ],
     "icons": {
-        "128": "logo-128.png"
+        "128": "assets/logo-128.png"
     },
     "background": {
         "scripts": [
@@ -38,12 +37,12 @@
     "page_action": {
         "default_popup": "popup.html",
         "default_icon": {
-            "128": "logo-128.png"
+            "128": "assets/logo-128.png"
         }
     },
     "web_accessible_resources": [
         "injectable.js",
-        "logo-128.png"
+        "assets/logo-128.png"
     ],
     "manifest_version": 2
 }

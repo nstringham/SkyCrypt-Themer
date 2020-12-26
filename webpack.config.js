@@ -5,6 +5,13 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+let package = require('./package.json');
+function insertVersion(content) {
+    var manifest = JSON.parse(content.toString());
+    manifest.version = package.version;
+    return JSON.stringify(manifest);
+}
+
 module.exports = (env, argv) => ({
     mode: process.env.NODE_ENV,
     devtool: (argv.mode === 'development') ? 'inline-source-map' : undefined,
@@ -39,7 +46,15 @@ module.exports = (env, argv) => ({
     plugins: [
         new CopyPlugin({
             patterns: [
-                { from: "static", to: "." },
+                {
+                    from: "./src/assets",
+                    to: "assets",
+                }, {
+                    from: "./src/manifest.json",
+                    transform(content, absoluteFrom) {
+                        return insertVersion(content)
+                    },
+                }
             ],
         }),
         new ESLintPlugin({
