@@ -1,5 +1,5 @@
 :root {
-    --mdc-theme-primary: #1976d2;
+    --mdc-theme-primary: #1565c0;
     --mdc-shape-small: 28px;
 
     --scroll-track-color: #f1f1f1;
@@ -8,6 +8,7 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
+        --mdc-theme-primary: #1e88e5;
         --mdc-theme-surface: #121212;
         --mdc-theme-background: #121212;
         --mdc-theme-on-surface: #ffffff;
