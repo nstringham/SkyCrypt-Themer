@@ -1,6 +1,6 @@
 {
   "name": "skycrypt-themer",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Create themes for SkyCrypt",
   "private": true,
   "scripts": {
