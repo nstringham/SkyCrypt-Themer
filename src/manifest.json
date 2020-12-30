@@ -38,5 +38,10 @@
         "injectable.js",
         "assets/logo-128.png"
     ],
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "nstringham@users.noreply.github.com"
+        }
+    },
     "manifest_version": 2
 }
