@@ -2,10 +2,17 @@
     "name": "SkyCrypt Themer",
     "description": "Create themes for SkyCrypt",
     "permissions": [
-        "storage"
+        "storage",
+        "declarativeContent"
     ],
     "icons": {
         "128": "assets/logo-128.png"
+    },
+    "background": {
+        "scripts": [
+            "background.js"
+        ],
+        "persistent": false
     },
     "content_scripts": [
         {
@@ -29,7 +36,6 @@
     ],
     "page_action": {
         "default_popup": "popup.html",
-        "show_matches": ["https://sky.shiiyu.moe/*"],
         "default_icon": {
             "128": "assets/logo-128.png"
         }
