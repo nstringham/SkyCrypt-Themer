@@ -4,6 +4,7 @@ const CopyPlugin = require("copy-webpack-plugin");
 const ESLintPlugin = require('eslint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 let package = require('./package.json');
 function insertVersion(content) {
@@ -43,6 +44,7 @@ module.exports = (env, argv) => ({
         extensions: ['.ts', '.js'],
     },
     plugins: [
+        new CleanWebpackPlugin(),
         new CopyPlugin({
             patterns: [
                 {

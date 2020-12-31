@@ -29,10 +29,7 @@
     ],
     "page_action": {
         "default_popup": "popup.html",
-        "show_matches": ["https://sky.shiiyu.moe/*"],
-        "default_icon": {
-            "128": "assets/logo-128.png"
-        }
+        "show_matches": ["https://sky.shiiyu.moe/*"]
     },
     "web_accessible_resources": [
         "injectable.js",
