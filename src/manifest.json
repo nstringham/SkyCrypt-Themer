@@ -41,5 +41,5 @@
         "injectable.js",
         "assets/logo-128.png"
     ],
-    "manifest_version": 2
+    "manifest_version": 3
 }
