@@ -9,10 +9,7 @@
         "128": "assets/logo-128.png"
     },
     "background": {
-        "scripts": [
-            "background.js"
-        ],
-        "persistent": false
+        "service_worker": "background.js"
     },
     "content_scripts": [
         {
@@ -34,12 +31,17 @@
             "run_at": "document_start"
         }
     ],
-    "page_action": {
+    "action": {
         "default_popup": "popup.html"
     },
-    "web_accessible_resources": [
-        "injectable.js",
-        "assets/logo-128.png"
-    ],
+    "web_accessible_resources": [{
+        "resources":[
+            "injectable.js",
+            "assets/logo-128.png"
+        ],
+        "matches": [
+            "https://sky.shiiyu.moe/*"
+        ]
+    }],
     "manifest_version": 3
 }
