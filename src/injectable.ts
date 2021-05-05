@@ -32,7 +32,7 @@ window.addEventListener("message", (event) => {
   }
 });
 
-const themesBox = document.getElementById("themes_box");
+const themesBox = document.getElementById("themes-box");
 
 function updateButton(themeName: string, selected?: boolean) {
   const theme = extra.themes[themeName];
