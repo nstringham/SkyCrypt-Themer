@@ -5,8 +5,6 @@ declare namespace extra {
   let themes: Themes;
 }
 
-declare function switchTheme(theme: string): void;
-
 declare function loadTheme(currentTheme: string): void;
 
 window.addEventListener("message", (event) => {
@@ -26,7 +24,7 @@ window.addEventListener("message", (event) => {
         }
         break;
       case "switch-theme":
-        switchTheme(event.data.theme);
+        document.querySelector<HTMLInputElement>(`input[name="theme"][value="${event.data.theme}"]`)?.click();
         break;
     }
   }
