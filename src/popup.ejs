@@ -27,6 +27,10 @@ const colorNames = ['logo', 'icon', 'link', 'hover', 'maxed', 'gold', 'skillbar'
             </mwc-textfield>
             <mwc-textfield id="bg" type="url" label="Background" outlined>
             </mwc-textfield>
+            <mwc-select id="light" label="Color Scheme" outlined>
+                <mwc-list-item value="dark">Dark</mwc-list-item>
+                <mwc-list-item value="light">Light</mwc-list-item>
+            </mwc-select>
             <% for (const colorName of colorNames) { %>
             <label class="colorInput">
                 <span><%= colorName %> color</span>

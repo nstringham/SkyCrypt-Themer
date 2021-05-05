@@ -4,6 +4,7 @@ export class ThemeForm {
   private nameField: HTMLInputElement;
   private authorField: HTMLInputElement;
   private bgField: HTMLInputElement;
+  private lightField: HTMLSelectElement;
   private colorFields: { [key: string]: HTMLInputElement } = {};
   private backgroundFields: { [key: string]: HTMLInputElement } = {};
 
@@ -17,6 +18,7 @@ export class ThemeForm {
     this.nameField = element.querySelector("#name") as HTMLInputElement;
     this.authorField = element.querySelector("#author") as HTMLInputElement;
     this.bgField = element.querySelector("#bg") as HTMLInputElement;
+    this.lightField = element.querySelector("#light") as HTMLSelectElement;
     for (const backgroundName in defaultTheme.backgrounds) {
       this.backgroundFields[backgroundName] = element.querySelector(`#${backgroundName}-color`) as HTMLInputElement;
       element.querySelector(`#${backgroundName}-default`)?.addEventListener("click", () => {
@@ -89,6 +91,7 @@ export class ThemeForm {
       name: this.nameField.value,
       author: this.authorField.value,
       community: true,
+      light: this.lightField.value === "light" || undefined,
       images: {
         bg: this.bgField.value.length ? this.bgField.value : undefined,
       },
@@ -102,6 +105,7 @@ export class ThemeForm {
     this.nameField.value = value?.name;
     this.authorField.value = value?.author;
     this.bgField.value = value?.images?.bg || "";
+    this.lightField.value = value.light ? "light" : "dark";
     for (const backgroundName in defaultTheme.backgrounds) {
       this.backgroundFields[backgroundName].value =
         value?.backgrounds?.[backgroundName as BackgroundName]?.type === "color"

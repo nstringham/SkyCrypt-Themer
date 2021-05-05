@@ -12,6 +12,8 @@
         --mdc-theme-surface: #121212;
         --mdc-theme-background: #121212;
         --mdc-theme-on-surface: #ffffff;
+        --mdc-theme-text-primary-on-background: rgba(255, 255, 255, 0.87);
+        --mdc-ripple-color: #ffffff;
 
         --mdc-text-field-outlined-idle-border-color: rgba(255, 255, 255, 0.38);
         --mdc-text-field-outlined-hover-border-color: rgba(255, 255, 255, 0.87);
@@ -19,6 +21,12 @@
         --mdc-text-field-ink-color: rgba(255, 255, 255, 0.87);
         --mdc-text-field-label-ink-color: rgba(255, 255, 255, 0.6);
         --mdc-text-field-disabled-ink-color: rgba(255, 255, 255, 0.37);
+
+        --mdc-select-outlined-idle-border-color: rgba(255, 255, 255, 0.38);
+        --mdc-select-outlined-hover-border-color: rgba(255, 255, 255, 0.87);
+        --mdc-select-ink-color: rgba(255, 255, 255, 0.87);
+        --mdc-select-label-ink-color: rgba(255, 255, 255, 0.87);
+        --mdc-select-dropdown-icon-color: rgba(255, 255, 255, 0.54);
 
         --scroll-track-color: #222222;
         --scroll-thumb-color: #383838;
