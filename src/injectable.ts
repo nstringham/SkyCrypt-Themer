@@ -19,7 +19,7 @@ window.addEventListener("message", (event) => {
             event.data.themes[key].name = "Themer Theme";
           }
           extra.themes[key] = event.data.themes[key];
-          updateButton(key, currentTheme === key);
+          updateButton(key);
         }
         if (currentTheme) {
           loadTheme(currentTheme);
@@ -34,20 +34,19 @@ window.addEventListener("message", (event) => {
 
 const themesBox = document.getElementById("themes-box");
 
-function updateButton(themeName: string, selected?: boolean) {
+function updateButton(themeName: string) {
   const theme = extra.themes[themeName];
   if (theme) {
     const themeElement =
-      document.getElementById(`${themeName}-theme`)?.parentElement || themesBox?.appendChild(document.createElement("div"));
+      (document.querySelector(`input[name="theme"][value="${themeName}"]`)?.parentElement as HTMLLabelElement) ??
+      themesBox?.appendChild(document.createElement("label"));
     if (themeElement) {
-      themeElement.className = "theme";
+      themeElement.className = "list-item";
       themeElement.innerHTML = /*html*/ `
-        <img class="theme-icon" src="${theme.logo}">
-        <span class="theme-name">${theme.name}</span>
+        <img class="icon" src="${theme.logo}">
+        <span class="name">${theme.name}</span>
         <div class="theme-author">by <span>${theme.author}</span></div>
-        <div class=${
-          selected ? "selected_button" : "switch_themes_button"
-        } id="${themeName}-theme" onclick="switchTheme('${themeName}')">${selected ? "In Use" : "Switch"}</div>
+        <input type="radio" name="theme" value="${themeName}">
       `;
     }
   }
