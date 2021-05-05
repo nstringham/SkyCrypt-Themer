@@ -41,7 +41,9 @@ function updateButton(themeName: string) {
     if (themeElement) {
       themeElement.className = "list-item";
       themeElement.innerHTML = /*html*/ `
-        <img class="icon" src="${theme.logo}">
+        <img class="icon" src="/resources/img/logo_square.svg${
+          (theme.colors?.logo?.replace("#", "?color=") ?? "") + (theme.light ? "&invert" : "")
+        }">
         <span class="name">${theme.name}</span>
         <div class="theme-author">by <span>${theme.author}</span></div>
         <input type="radio" name="theme" value="${themeName}">

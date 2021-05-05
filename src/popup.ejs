@@ -1,5 +1,5 @@
 <% 
-const colorNames = ['icon', 'line', 'link', 'hover', 'maxed', 'gold', 'skillbar', 'maxedbar'];
+const colorNames = ['logo', 'icon', 'link', 'hover', 'maxed', 'gold', 'skillbar', 'maxedbar'];
 %>
 
 
@@ -26,8 +26,6 @@ const colorNames = ['icon', 'line', 'link', 'hover', 'maxed', 'gold', 'skillbar'
             <mwc-textfield id="author" type="text" autocomplete="name" label="author" outlined>
             </mwc-textfield>
             <mwc-textfield id="bg" type="url" label="background" outlined>
-            </mwc-textfield>
-            <mwc-textfield id="logo" type="url" label="logo icon" outlined>
             </mwc-textfield>
             <% for (const colorName of colorNames) { %>
             <label class="colorInput">
