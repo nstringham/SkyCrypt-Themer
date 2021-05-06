@@ -86,7 +86,6 @@ export class ThemeForm {
         colors[colorName as ColorName] = this.colorFields[colorName].value;
       }
     }
-    console.log(backgrounds);
     return {
       name: this.nameField.value,
       author: this.authorField.value,
@@ -101,7 +100,6 @@ export class ThemeForm {
   }
 
   set theme(value: Theme) {
-    console.log(value);
     this.nameField.value = value?.name;
     this.authorField.value = value?.author;
     this.bgField.value = value?.images?.bg || "";
@@ -125,7 +123,7 @@ export class ThemeForm {
           {
             description: "SkyCrypt Theme JSON",
             accept: {
-              "application/json": [".json"],
+              "application/json": ["*.skycrypttheme.json"],
             },
           },
         ],
