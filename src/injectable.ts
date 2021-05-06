@@ -38,17 +38,15 @@ function updateButton(themeName: string, selected?: boolean) {
     const themeElement =
       (document.querySelector(`input[name="theme"][value="${themeName}"]`)?.parentElement as HTMLLabelElement) ??
       themesBox?.appendChild(document.createElement("label"));
-    if (themeElement) {
-      themeElement.className = "list-item";
-      themeElement.innerHTML = /*html*/ `
-        <img class="icon" src="/resources/img/logo_square.svg${
-          (theme.colors?.logo?.replace("#", "?color=") ?? "") + (theme.light ? "&invert" : "")
-        }">
-        <span class="name">${theme.name}</span>
-        <div class="theme-author">by <span>${theme.author}</span></div>
-        <input type="radio" name="theme" value="${themeName}" ${selected ? "checked" : ""}>
-      `;
-    }
+    themeElement.className = "list-item";
+    themeElement.innerHTML = /*html*/ `
+      <img class="icon" src="/resources/img/logo_square.svg${
+        (theme.colors?.logo?.replace("#", "?color=") ?? "") + (theme.light ? "&invert" : "")
+      }">
+      <span class="name">${theme.name}</span>
+      <div class="theme-author">by <span>${theme.author}</span></div>
+      <input type="radio" name="theme" value="${themeName}" ${selected ? "checked" : ""}>
+    `;
   }
 }
 
