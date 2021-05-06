@@ -5,8 +5,6 @@ declare namespace extra {
   let themes: Themes;
 }
 
-declare function switchTheme(theme: string): void;
-
 declare function loadTheme(currentTheme: string): void;
 
 window.addEventListener("message", (event) => {
@@ -26,30 +24,29 @@ window.addEventListener("message", (event) => {
         }
         break;
       case "switch-theme":
-        switchTheme(event.data.theme);
+        document.querySelector<HTMLInputElement>(`input[name="theme"][value="${event.data.theme}"]`)?.click();
         break;
     }
   }
 });
 
-const themesBox = document.getElementById("themes_box");
+const themesBox = document.getElementById("themes-box");
 
 function updateButton(themeName: string, selected?: boolean) {
   const theme = extra.themes[themeName];
   if (theme) {
     const themeElement =
-      document.getElementById(`${themeName}-theme`)?.parentElement || themesBox?.appendChild(document.createElement("div"));
-    if (themeElement) {
-      themeElement.className = "theme";
-      themeElement.innerHTML = /*html*/ `
-        <img class="theme-icon" src="${theme.logo}">
-        <span class="theme-name">${theme.name}</span>
-        <div class="theme-author">by <span>${theme.author}</span></div>
-        <div class=${
-          selected ? "selected_button" : "switch_themes_button"
-        } id="${themeName}-theme" onclick="switchTheme('${themeName}')">${selected ? "In Use" : "Switch"}</div>
-      `;
-    }
+      (document.querySelector(`input[name="theme"][value="${themeName}"]`)?.parentElement as HTMLLabelElement) ??
+      themesBox?.appendChild(document.createElement("label"));
+    themeElement.className = "list-item";
+    themeElement.innerHTML = /*html*/ `
+      <img class="icon" src="/resources/img/logo_square.svg${
+        (theme.colors?.logo?.replace("#", "?color=") ?? "") + (theme.light ? "&invert" : "")
+      }">
+      <span class="name">${theme.name}</span>
+      <div class="theme-author">by <span>${theme.author}</span></div>
+      <input type="radio" name="theme" value="${themeName}" ${selected ? "checked" : ""}>
+    `;
   }
 }
 

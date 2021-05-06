@@ -1,11 +1,12 @@
-import { Theme, defaultTheme, ThemeColors, ThemeColorName, hexToRGB } from "./common";
+import { Theme, defaultTheme, Colors, ColorName, hexToRGB, BackgroundName, Backgrounds, Color } from "./common";
 
 export class ThemeForm {
   private nameField: HTMLInputElement;
   private authorField: HTMLInputElement;
-  private logoField: HTMLInputElement;
   private bgField: HTMLInputElement;
+  private lightField: HTMLSelectElement;
   private colorFields: { [key: string]: HTMLInputElement } = {};
+  private backgroundFields: { [key: string]: HTMLInputElement } = {};
 
   constructor(
     element: HTMLElement,
@@ -16,12 +17,28 @@ export class ThemeForm {
   ) {
     this.nameField = element.querySelector("#name") as HTMLInputElement;
     this.authorField = element.querySelector("#author") as HTMLInputElement;
-    this.logoField = element.querySelector("#logo") as HTMLInputElement;
     this.bgField = element.querySelector("#bg") as HTMLInputElement;
+    this.lightField = element.querySelector("#light") as HTMLSelectElement;
+    for (const backgroundName in defaultTheme.backgrounds) {
+      this.backgroundFields[backgroundName] = element.querySelector(`#${backgroundName}-color`) as HTMLInputElement;
+      element.querySelector(`#${backgroundName}-default`)?.addEventListener("click", () => {
+        this.backgroundFields[backgroundName].value = defaultTheme.backgrounds[backgroundName as BackgroundName].color;
+        this.backgroundFields[backgroundName].dispatchEvent(new Event("change", { bubbles: true }));
+      });
+      this.backgroundFields[backgroundName].addEventListener("input", () => {
+        const value = this.backgroundFields[backgroundName].value;
+        this.port.postMessage({
+          type: "set-styles",
+          styles: {
+            [`--${backgroundName}`]: value,
+          },
+        });
+      });
+    }
     for (const colorName in defaultTheme.colors) {
       this.colorFields[colorName] = element.querySelector(`#${colorName}-color`) as HTMLInputElement;
       element.querySelector(`#${colorName}-default`)?.addEventListener("click", () => {
-        this.colorFields[colorName].value = defaultTheme.colors[colorName as ThemeColorName];
+        this.colorFields[colorName].value = defaultTheme.colors[colorName as ColorName];
         this.colorFields[colorName].dispatchEvent(new Event("change", { bubbles: true }));
       });
       this.colorFields[colorName].addEventListener("input", () => {
@@ -47,24 +64,37 @@ export class ThemeForm {
 
     element.querySelector("#export-theme")?.addEventListener("click", () => this.saveFile());
 
-    this.theme = value || { name: "", author: "", community: true, logo: "" };
+    this.theme = value || { name: "", author: "", community: true };
   }
 
   get theme(): Theme {
-    const colors: ThemeColors = {};
+    const backgrounds: Backgrounds = {};
+    for (const backgroundName in defaultTheme.backgrounds) {
+      if (
+        this.backgroundFields[backgroundName].value !==
+        defaultTheme.backgrounds[backgroundName as BackgroundName].color.toLocaleLowerCase()
+      ) {
+        backgrounds[backgroundName as BackgroundName] = {
+          type: "color",
+          color: this.backgroundFields[backgroundName].value,
+        };
+      }
+    }
+    const colors: Colors = {};
     for (const colorName in defaultTheme.colors) {
-      if (this.colorFields[colorName].value !== defaultTheme.colors[colorName as ThemeColorName].toLocaleLowerCase()) {
-        colors[colorName as ThemeColorName] = this.colorFields[colorName].value;
+      if (this.colorFields[colorName].value !== defaultTheme.colors[colorName as ColorName].toLocaleLowerCase()) {
+        colors[colorName as ColorName] = this.colorFields[colorName].value;
       }
     }
     return {
       name: this.nameField.value,
       author: this.authorField.value,
       community: true,
-      logo: this.logoField.value,
-      backgrounds: {
-        bg: this.bgField.value.length ? { webp: this.bgField.value } : undefined,
+      light: this.lightField.value === "light" || undefined,
+      images: {
+        bg: this.bgField.value.length ? this.bgField.value : undefined,
       },
+      backgrounds,
       colors,
     };
   }
@@ -72,11 +102,17 @@ export class ThemeForm {
   set theme(value: Theme) {
     this.nameField.value = value?.name;
     this.authorField.value = value?.author;
-    this.logoField.value = value?.logo;
-    this.bgField.value = value?.backgrounds?.bg?.webp || "";
+    this.bgField.value = value?.images?.bg || "";
+    this.lightField.value = value.light ? "light" : "dark";
+    for (const backgroundName in defaultTheme.backgrounds) {
+      this.backgroundFields[backgroundName].value =
+        value?.backgrounds?.[backgroundName as BackgroundName]?.type === "color"
+          ? (value.backgrounds[backgroundName as BackgroundName] as { color: Color }).color
+          : defaultTheme.backgrounds[backgroundName as BackgroundName].color;
+    }
     for (const colorName in defaultTheme.colors) {
       this.colorFields[colorName].value =
-        value?.colors?.[colorName as ThemeColorName] || defaultTheme.colors[colorName as ThemeColorName];
+        value?.colors?.[colorName as ColorName] ?? defaultTheme.colors[colorName as ColorName];
     }
   }
 
@@ -87,7 +123,7 @@ export class ThemeForm {
           {
             description: "SkyCrypt Theme JSON",
             accept: {
-              "application/json": [".json"],
+              "application/json": ["*.skycrypttheme.json"],
             },
           },
         ],

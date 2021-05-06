@@ -4,6 +4,8 @@ import "./popup.scss";
 import "@material/mwc-button";
 import "@material/mwc-textfield";
 import "@material/mwc-icon-button";
+import "@material/mwc-select";
+import "@material/mwc-list/mwc-list-item";
 
 let port: chrome.runtime.Port;
 
