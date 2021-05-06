@@ -17,7 +17,7 @@ window.addEventListener("message", (event) => {
             event.data.themes[key].name = "Themer Theme";
           }
           extra.themes[key] = event.data.themes[key];
-          updateButton(key);
+          updateButton(key, currentTheme === key);
         }
         if (currentTheme) {
           loadTheme(currentTheme);
@@ -32,7 +32,7 @@ window.addEventListener("message", (event) => {
 
 const themesBox = document.getElementById("themes-box");
 
-function updateButton(themeName: string) {
+function updateButton(themeName: string, selected?: boolean) {
   const theme = extra.themes[themeName];
   if (theme) {
     const themeElement =
@@ -46,7 +46,7 @@ function updateButton(themeName: string) {
         }">
         <span class="name">${theme.name}</span>
         <div class="theme-author">by <span>${theme.author}</span></div>
-        <input type="radio" name="theme" value="${themeName}">
+        <input type="radio" name="theme" value="${themeName}" ${selected ? "checked" : ""}>
       `;
     }
   }
