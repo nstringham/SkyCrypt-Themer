@@ -123,7 +123,7 @@ export class ThemeForm {
           {
             description: "SkyCrypt Theme JSON",
             accept: {
-              "application/json": ["*.skycrypttheme.json"],
+              "application/json": [".json"],
             },
           },
         ],
