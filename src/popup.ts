@@ -6,6 +6,8 @@ import "@material/mwc-textfield";
 import "@material/mwc-icon-button";
 import "@material/mwc-select";
 import "@material/mwc-list/mwc-list-item";
+import "@material/mwc-dialog";
+import { asyncConfirm } from "./dialog";
 
 let port: chrome.runtime.Port;
 
@@ -31,11 +33,18 @@ function createThemeForm(initialValue?: Theme, id?: string) {
   const form = themesContainer.querySelector(`form#${id}`) as HTMLFormElement;
 
   const deletionCallback = () => {
-    if (confirm("are you sure?")) {
-      delete themeForms[id as string];
-      form.remove();
-      setThemes();
-    }
+    const themeName = themeForms[id as string].theme.name;
+    asyncConfirm(
+      "Delete Theme?",
+      `are you sure you want to permanently delete ${themeName || "this theme"} form all your synced devices?`,
+      "Delete"
+    ).then((isSure) => {
+      if (isSure) {
+        delete themeForms[id as string];
+        form.remove();
+        setThemes();
+      }
+    });
   };
 
   themeForms[id] = new ThemeForm(form, id, port, deletionCallback, initialValue);

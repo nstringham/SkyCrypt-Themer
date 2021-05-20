@@ -45,6 +45,13 @@ const colorNames = ['logo', 'icon', 'link', 'hover', 'maxed', 'gold', 'skillbar'
             </div>
         </form>
     </template>
+    <template id="dialog">
+        <mwc-dialog open>
+            <div id="dialog-body"></div>
+            <mwc-button slot="primaryAction" dialogAction="ok" id="primary-action"></mwc-button>
+            <mwc-button slot="secondaryAction" dialogAction="cancel">Cancel</mwc-button>
+        </mwc-dialog>
+    </template>
     <script type="module" src="popup.js"></script>
 </body>
 
