@@ -19,6 +19,7 @@ window.addEventListener("message", (event) => {
           extra.themes[key] = event.data.themes[key];
           updateButton(key, currentTheme === key);
         }
+        removeExtraButtons(Object.keys(event.data.themes));
         if (currentTheme) {
           loadTheme(currentTheme);
         }
@@ -48,6 +49,19 @@ function updateButton(themeName: string, selected?: boolean) {
       <input type="radio" name="theme" value="${themeName}" ${selected ? "checked" : ""}>
     `;
   }
+}
+
+/**
+ * removes any theme buttons not in the list
+ *
+ * @param allowedThemes list of theme names that should not be removed
+ */
+function removeExtraButtons(allowedThemes: string[]) {
+  themesBox?.querySelectorAll<HTMLInputElement>('input[name="theme"]').forEach((radio: HTMLInputElement) => {
+    if (radio.value.startsWith("themer-") && !allowedThemes.includes(radio.value)) {
+      radio.parentElement?.remove();
+    }
+  });
 }
 
 window.postMessage(
