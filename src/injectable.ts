@@ -31,14 +31,14 @@ window.addEventListener("message", (event) => {
   }
 });
 
-const themesBox = document.getElementById("themes-box");
+const themesBox = document.getElementById("themes-box") as HTMLElement;
 
 function updateButton(themeName: string, selected?: boolean): void {
   const theme = extra.themes[themeName];
   if (theme) {
     const themeElement =
       (document.querySelector(`input[name="theme"][value="${themeName}"]`)?.parentElement as HTMLLabelElement) ??
-      themesBox?.appendChild(document.createElement("label"));
+      themesBox.appendChild(document.createElement("label"));
     themeElement.className = "list-item";
     themeElement.innerHTML = /*html*/ `
       <img class="icon" src="/resources/img/logo_square.svg${
@@ -57,7 +57,7 @@ function updateButton(themeName: string, selected?: boolean): void {
  * @param allowedThemes list of theme names that should not be removed
  */
 function removeExtraButtons(allowedThemes: string[]) {
-  themesBox?.querySelectorAll<HTMLInputElement>('input[name="theme"]').forEach((radio: HTMLInputElement) => {
+  themesBox.querySelectorAll<HTMLInputElement>('input[name="theme"]').forEach((radio: HTMLInputElement) => {
     if (radio.value.startsWith("themer-") && !allowedThemes.includes(radio.value)) {
       radio.parentElement?.remove();
     }
@@ -68,7 +68,7 @@ function removeExtraButtons(allowedThemes: string[]) {
   // add a temporary checkbox to stop SkyCrypt code from throwing
   const startingTheme = localStorage.getItem("currentTheme");
   if (startingTheme && !document.querySelector(`input[name="theme"][value="${startingTheme}"]`)) {
-    const themeElement = themesBox?.appendChild(document.createElement("label")) as HTMLLabelElement;
+    const themeElement = themesBox.appendChild(document.createElement("label")) as HTMLLabelElement;
     themeElement.innerHTML = /*html*/ `<input type="radio" name="theme" value="${startingTheme}">`;
   }
 }
