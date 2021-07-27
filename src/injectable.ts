@@ -5,8 +5,6 @@ declare namespace extra {
   let themes: Themes;
 }
 
-declare function loadTheme(currentTheme: string): void;
-
 window.addEventListener("message", (event) => {
   if (event.source === window) {
     switch (event.data?.type) {
@@ -21,7 +19,9 @@ window.addEventListener("message", (event) => {
         }
         removeExtraButtons(Object.keys(event.data.themes));
         if (currentTheme) {
-          loadTheme(currentTheme);
+          const checkbox = document.querySelector(`#themes-box input[value="${currentTheme}"]`) as HTMLInputElement;
+          checkbox.checked = false;
+          checkbox.click();
         }
         break;
       case "switch-theme":
