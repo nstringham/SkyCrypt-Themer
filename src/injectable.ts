@@ -64,11 +64,4 @@ function removeExtraButtons(allowedThemes: string[]) {
   });
 }
 
-window.postMessage(
-  {
-    message: "ready",
-  },
-  "*"
-);
-
 console.log("SkyCrypt Themer successfully injected");

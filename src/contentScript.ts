@@ -18,13 +18,9 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
   }
 });
 
-window.addEventListener("message", (event) => {
-  if (event.source === window && event.data?.message === "ready") {
-    chrome.storage.sync.get("themes", (result) => {
-      if (result.themes) {
-        sendThemes(result.themes);
-      }
-    });
+chrome.storage.sync.get("themes", (result) => {
+  if (result.themes) {
+    sendThemes(result.themes);
   }
 });
 
