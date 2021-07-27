@@ -33,7 +33,7 @@ window.addEventListener("message", (event) => {
 
 const themesBox = document.getElementById("themes-box");
 
-function updateButton(themeName: string, selected?: boolean) {
+function updateButton(themeName: string, selected?: boolean): void {
   const theme = extra.themes[themeName];
   if (theme) {
     const themeElement =
@@ -62,6 +62,15 @@ function removeExtraButtons(allowedThemes: string[]) {
       radio.parentElement?.remove();
     }
   });
+}
+
+{
+  // add a temporary checkbox to stop SkyCrypt code from throwing
+  const startingTheme = localStorage.getItem("currentTheme");
+  if (startingTheme && !document.querySelector(`input[name="theme"][value="${startingTheme}"]`)) {
+    const themeElement = themesBox?.appendChild(document.createElement("label")) as HTMLLabelElement;
+    themeElement.innerHTML = /*html*/ `<input type="radio" name="theme" value="${startingTheme}">`;
+  }
 }
 
 console.log("SkyCrypt Themer successfully injected");
