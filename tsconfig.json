@@ -3,7 +3,7 @@
     "compilerOptions": {
         "outDir": "./dist/",
         "target": "ES2020",
-        "module": "es6",
+        "module": "esnext",
         "sourceMap": true,
         "strict": true,
         "types": [

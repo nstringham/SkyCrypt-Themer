@@ -41,6 +41,7 @@ module.exports = (env, argv) => ({
             },
         ],
     },
+    experiments: { topLevelAwait: true },
     resolve: {
         extensions: ['.ts', '.js'],
     },
