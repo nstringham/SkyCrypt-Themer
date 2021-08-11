@@ -31,7 +31,27 @@ window.addEventListener("message", (event) => {
   }
 });
 
-const themesBox = document.getElementById("themes-box") as HTMLElement;
+const themesBox = await new Promise<HTMLElement>((resolve) => {
+  const themesBox = document.getElementById("themes-box");
+  if (themesBox) {
+    console.log("SkyCrypt Themer injectable instantly found:", themesBox);
+    resolve(themesBox);
+    return;
+  }
+  const observer = new MutationObserver((mutationsList) => {
+    mutationsList.forEach((mutation) => {
+      mutation.addedNodes.forEach((node) => {
+        if (node instanceof HTMLElement && node.id == "themes-box") {
+          console.log("SkyCrypt Themer injectable waited for:", node);
+          observer.disconnect();
+          resolve(node);
+        }
+      });
+    });
+  });
+
+  observer.observe(document.documentElement, { childList: true, subtree: true });
+});
 
 function updateButton(themeName: string, selected?: boolean): void {
   const theme = extra.themes[themeName];
