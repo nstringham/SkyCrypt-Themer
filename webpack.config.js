@@ -13,6 +13,7 @@ function insertVersion(content) {
   return JSON.stringify(manifest);
 }
 
+/** @type {()=>import("webpack").Configuration} */
 module.exports = (env, argv) => ({
   mode: process.env.NODE_ENV,
   devtool: argv.mode === "development" ? "inline-source-map" : undefined,
