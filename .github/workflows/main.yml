@@ -23,9 +23,13 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
-      # installs node and does npm i
+      # installs node
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.4.0
+        
+      # installs node dependancyies
+      - name: npm i
+        run: npm i
 
       # builds for prod with webpack
       - name: build
