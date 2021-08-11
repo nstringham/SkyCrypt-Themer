@@ -28,5 +28,5 @@ jobs:
         uses: actions/setup-node@v2.4.0
 
       # builds for prod with webpack
-      - name: Run a one-line script
+      - name: build
         run: npm run build
