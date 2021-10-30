@@ -1,47 +1,32 @@
 {
-    "name": "SkyCrypt Themer",
-    "description": "Create themes for SkyCrypt",
-    "permissions": [
-        "storage",
-        "declarativeContent"
-    ],
-    "icons": {
-        "128": "assets/logo-128.png"
+  "name": "SkyCrypt Themer",
+  "permissions": ["storage", "declarativeContent"],
+  "icons": {
+    "128": "assets/logo-128.png"
+  },
+  "background": {
+    "service_worker": "background.ts"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://sky.shiiyu.moe/*"],
+      "js": ["contentScript.ts"],
+      "run_at": "document_idle"
     },
-    "background": {
-        "service_worker": "background.js"
-    },
-    "content_scripts": [
-        {
-            "matches": [
-                "https://sky.shiiyu.moe/*"
-            ],
-            "js": [
-                "contentScript.js"
-            ],
-            "run_at": "document_idle"
-        },
-        {
-            "matches": [
-                "https://sky.shiiyu.moe/*"
-            ],
-            "js": [
-                "contentScriptStart.js"
-            ],
-            "run_at": "document_start"
-        }
-    ],
-    "action": {
-        "default_popup": "popup.html"
-    },
-    "web_accessible_resources": [{
-        "resources":[
-            "injectable.js",
-            "assets/logo-128.png"
-        ],
-        "matches": [
-            "https://sky.shiiyu.moe/*"
-        ]
-    }],
-    "manifest_version": 3
+    {
+      "matches": ["https://sky.shiiyu.moe/*"],
+      "js": ["contentScriptStart.ts"],
+      "run_at": "document_start"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["injectable.ts", "assets/logo-128.png"],
+      "matches": ["https://sky.shiiyu.moe/*"]
+    }
+  ],
+  "manifest_version": 3
 }

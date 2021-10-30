@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="popup.css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div id="themes-container"></div>
+    <div class="button-row">
+      <mwc-button id="new-theme" label="new theme" raised></mwc-button>
+      <mwc-button id="import-theme" label="import theme" raised></mwc-button>
+    </div>
+    <template id="theme-form">
+      <form>
+        <mwc-textfield id="name" type="text" label="Theme Name" outlined> </mwc-textfield>
+        <mwc-textfield id="author" type="text" autocomplete="name" label="Author" outlined> </mwc-textfield>
+        <mwc-textfield id="bg" type="url" label="Background Image URL" outlined> </mwc-textfield>
+        <mwc-select id="light" label="Color Scheme" outlined>
+          <mwc-list-item value="dark">Dark</mwc-list-item>
+          <mwc-list-item value="light">Light</mwc-list-item>
+        </mwc-select>
+        <label class="colorInput">
+          <span>logo color</span>
+          <input id="logo-color" type="color" />
+          <mwc-icon-button id="logo-default" icon="format_color_reset"></mwc-icon-button>
+        </label>
+        <label class="colorInput">
+          <span>icon color</span>
+          <input id="icon-color" type="color" />
+          <mwc-icon-button id="icon-default" icon="format_color_reset"></mwc-icon-button>
+        </label>
+        <label class="colorInput">
+          <span>link color</span>
+          <input id="link-color" type="color" />
+          <mwc-icon-button id="link-default" icon="format_color_reset"></mwc-icon-button>
+        </label>
+        <label class="colorInput">
+          <span>hover color</span>
+          <input id="hover-color" type="color" />
+          <mwc-icon-button id="hover-default" icon="format_color_reset"></mwc-icon-button>
+        </label>
+        <label class="colorInput">
+          <span>maxed color</span>
+          <input id="maxed-color" type="color" />
+          <mwc-icon-button id="maxed-default" icon="format_color_reset"></mwc-icon-button>
+        </label>
+        <label class="colorInput">
+          <span>gold color</span>
+          <input id="gold-color" type="color" />
+          <mwc-icon-button id="gold-default" icon="format_color_reset"></mwc-icon-button>
+        </label>
+        <label class="colorInput">
+          <span>skillbar color</span>
+          <input id="skillbar-color" type="color" />
+          <mwc-icon-button id="skillbar-default" icon="format_color_reset"></mwc-icon-button>
+        </label>
+        <label class="colorInput">
+          <span>skillbar color</span>
+          <input id="skillbar-color" type="color" />
+          <mwc-icon-button id="skillbar-default" icon="format_color_reset"></mwc-icon-button>
+        </label>
+        <div class="button-row">
+          <mwc-button id="use-theme" label="use theme" type="button" raised></mwc-button>
+          <mwc-button id="delete-theme" label="delete theme" type="button" raised></mwc-button>
+          <mwc-button id="export-theme" label="export theme" type="button" raised></mwc-button>
+        </div>
+      </form>
+    </template>
+    <template id="dialog">
+      <mwc-dialog open>
+        <div id="dialog-body"></div>
+        <mwc-button slot="primaryAction" dialogAction="ok" id="primary-action"></mwc-button>
+        <mwc-button slot="secondaryAction" dialogAction="cancel">Cancel</mwc-button>
+      </mwc-dialog>
+    </template>
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>
