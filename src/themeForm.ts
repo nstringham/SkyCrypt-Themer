@@ -1,5 +1,6 @@
 import { Theme, defaultTheme, Colors, ColorName, hexToRGB, BackgroundName, Backgrounds, Color } from "./common";
 
+import "./elements/color-input";
 export class ThemeForm {
   private nameField: HTMLInputElement;
   private authorField: HTMLInputElement;
@@ -20,11 +21,9 @@ export class ThemeForm {
     this.bgField = element.querySelector("#bg") as HTMLInputElement;
     this.lightField = element.querySelector("#light") as HTMLSelectElement;
     for (const backgroundName in defaultTheme.backgrounds) {
-      this.backgroundFields[backgroundName] = element.querySelector(`#${backgroundName}-color`) as HTMLInputElement;
-      element.querySelector(`#${backgroundName}-default`)?.addEventListener("click", () => {
-        this.backgroundFields[backgroundName].value = defaultTheme.backgrounds[backgroundName as BackgroundName].color;
-        this.backgroundFields[backgroundName].dispatchEvent(new Event("change", { bubbles: true }));
-      });
+      this.backgroundFields[backgroundName] = element.querySelector(
+        `color-input[color-name="${backgroundName}"]`
+      ) as HTMLInputElement;
       this.backgroundFields[backgroundName].addEventListener("input", () => {
         const value = this.backgroundFields[backgroundName].value;
         this.port.postMessage({
@@ -36,11 +35,7 @@ export class ThemeForm {
       });
     }
     for (const colorName in defaultTheme.colors) {
-      this.colorFields[colorName] = element.querySelector(`#${colorName}-color`) as HTMLInputElement;
-      element.querySelector(`#${colorName}-default`)?.addEventListener("click", () => {
-        this.colorFields[colorName].value = defaultTheme.colors[colorName as ColorName];
-        this.colorFields[colorName].dispatchEvent(new Event("change", { bubbles: true }));
-      });
+      this.colorFields[colorName] = element.querySelector(`color-input[color-name="${colorName}"]`) as HTMLInputElement;
       this.colorFields[colorName].addEventListener("input", () => {
         const value = this.colorFields[colorName].value;
         this.port.postMessage({

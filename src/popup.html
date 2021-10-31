@@ -22,46 +22,14 @@
           <mwc-list-item value="dark">Dark</mwc-list-item>
           <mwc-list-item value="light">Light</mwc-list-item>
         </mwc-select>
-        <label class="colorInput">
-          <span>logo color</span>
-          <input id="logo-color" type="color" />
-          <mwc-icon-button id="logo-default" icon="format_color_reset"></mwc-icon-button>
-        </label>
-        <label class="colorInput">
-          <span>icon color</span>
-          <input id="icon-color" type="color" />
-          <mwc-icon-button id="icon-default" icon="format_color_reset"></mwc-icon-button>
-        </label>
-        <label class="colorInput">
-          <span>link color</span>
-          <input id="link-color" type="color" />
-          <mwc-icon-button id="link-default" icon="format_color_reset"></mwc-icon-button>
-        </label>
-        <label class="colorInput">
-          <span>hover color</span>
-          <input id="hover-color" type="color" />
-          <mwc-icon-button id="hover-default" icon="format_color_reset"></mwc-icon-button>
-        </label>
-        <label class="colorInput">
-          <span>maxed color</span>
-          <input id="maxed-color" type="color" />
-          <mwc-icon-button id="maxed-default" icon="format_color_reset"></mwc-icon-button>
-        </label>
-        <label class="colorInput">
-          <span>gold color</span>
-          <input id="gold-color" type="color" />
-          <mwc-icon-button id="gold-default" icon="format_color_reset"></mwc-icon-button>
-        </label>
-        <label class="colorInput">
-          <span>skillbar color</span>
-          <input id="skillbar-color" type="color" />
-          <mwc-icon-button id="skillbar-default" icon="format_color_reset"></mwc-icon-button>
-        </label>
-        <label class="colorInput">
-          <span>maxedbar color</span>
-          <input id="maxedbar-color" type="color" />
-          <mwc-icon-button id="maxedbar-default" icon="format_color_reset"></mwc-icon-button>
-        </label>
+        <color-input color-name="logo"></color-input>
+        <color-input color-name="icon"></color-input>
+        <color-input color-name="link"></color-input>
+        <color-input color-name="hover"></color-input>
+        <color-input color-name="maxed"></color-input>
+        <color-input color-name="gold"></color-input>
+        <color-input color-name="skillbar" is-background></color-input>
+        <color-input color-name="maxedbar" is-background></color-input>
         <div class="button-row">
           <mwc-button id="use-theme" label="use theme" type="button" raised></mwc-button>
           <mwc-button id="delete-theme" label="delete theme" type="button" raised></mwc-button>
