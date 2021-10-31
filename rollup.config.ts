@@ -15,7 +15,7 @@ export default {
   output: {
     dir: "dist",
     format: "esm",
-    sourcemap: !isProduction,
+    sourcemap: isProduction ? false : "inline",
   },
   plugins: [
     chromeExtension(),
