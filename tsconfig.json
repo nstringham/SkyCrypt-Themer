@@ -1,26 +1,15 @@
 {
-    "compileOnSave": false,
-    "compilerOptions": {
-        "outDir": "./dist/",
-        "target": "ES2020",
-        "module": "esnext",
-        "sourceMap": true,
-        "strict": true,
-        "types": [
-            "chrome",
-            "wicg-file-system-access",
-            "node"
-        ],
-        "typeRoots": [
-            "node_modules/@types"
-        ],
-        "moduleResolution": "node",
-        "lib": [
-            "es2017",
-            "dom"
-        ]
-    },
-    "include": [
-        "src/"
-    ]
+  "compileOnSave": false,
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "target": "ES2020",
+    "module": "esnext",
+    "sourceMap": true,
+    "strict": true,
+    "types": ["chrome", "wicg-file-system-access", "node"],
+    "typeRoots": ["node_modules/@types"],
+    "moduleResolution": "node",
+    "lib": ["es2017", "dom"]
+  },
+  "include": ["src/"]
 }
