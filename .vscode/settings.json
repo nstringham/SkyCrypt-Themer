@@ -1,14 +1,10 @@
 {
-    "cSpell.words": [
-        "Themer",
-        "shiiyu"
-    ],
-    "json.schemas": [
-        {
-            "fileMatch": [
-                "/manifest.json"
-            ],
-            "url": "http://json.schemastore.org/chrome-manifest"
-        }
-    ]
+  "cSpell.words": ["Themer", "shiiyu"],
+  "json.schemas": [
+    {
+      "fileMatch": ["/manifest.json"],
+      "url": "http://json.schemastore.org/chrome-manifest"
+    }
+  ],
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }

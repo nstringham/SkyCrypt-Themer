@@ -1,80 +1,78 @@
 :root {
-    --mdc-theme-primary: #1565c0;
-    --mdc-shape-small: 28px;
+  --mdc-theme-primary: #1565c0;
+  --mdc-shape-small: 28px;
 
-    --scroll-track-color: #f1f1f1;
-    --scroll-thumb-color: #c1c1c1;
+  --scroll-track-color: #f1f1f1;
+  --scroll-thumb-color: #c1c1c1;
 }
 
 @media (prefers-color-scheme: dark) {
-    :root {
-        --mdc-theme-primary: #1e88e5;
-        --mdc-theme-surface: #121212;
-        --mdc-theme-background: #121212;
-        --mdc-theme-on-surface: #ffffff;
-        --mdc-theme-text-primary-on-background: rgba(255, 255, 255, 0.87);
-        --mdc-ripple-color: #ffffff;
+  :root {
+    --mdc-theme-primary: #1e88e5;
+    --mdc-theme-surface: #121212;
+    --mdc-theme-background: #121212;
+    --mdc-theme-on-surface: #ffffff;
+    --mdc-theme-text-primary-on-background: rgba(255, 255, 255, 0.87);
+    --mdc-ripple-color: #ffffff;
 
-        --mdc-text-field-outlined-idle-border-color: rgba(255, 255, 255, 0.38);
-        --mdc-text-field-outlined-hover-border-color: rgba(255, 255, 255, 0.87);
-        --mdc-text-field-outlined-disabled-border-color: rgba(255, 255, 255, 0.06);
-        --mdc-text-field-ink-color: rgba(255, 255, 255, 0.87);
-        --mdc-text-field-label-ink-color: rgba(255, 255, 255, 0.6);
-        --mdc-text-field-disabled-ink-color: rgba(255, 255, 255, 0.37);
+    --mdc-text-field-outlined-idle-border-color: rgba(255, 255, 255, 0.38);
+    --mdc-text-field-outlined-hover-border-color: rgba(255, 255, 255, 0.87);
+    --mdc-text-field-outlined-disabled-border-color: rgba(255, 255, 255, 0.06);
+    --mdc-text-field-ink-color: rgba(255, 255, 255, 0.87);
+    --mdc-text-field-label-ink-color: rgba(255, 255, 255, 0.6);
+    --mdc-text-field-disabled-ink-color: rgba(255, 255, 255, 0.37);
 
-        --mdc-select-outlined-idle-border-color: rgba(255, 255, 255, 0.38);
-        --mdc-select-outlined-hover-border-color: rgba(255, 255, 255, 0.87);
-        --mdc-select-ink-color: rgba(255, 255, 255, 0.87);
-        --mdc-select-label-ink-color: rgba(255, 255, 255, 0.87);
-        --mdc-select-dropdown-icon-color: rgba(255, 255, 255, 0.54);
+    --mdc-select-outlined-idle-border-color: rgba(255, 255, 255, 0.38);
+    --mdc-select-outlined-hover-border-color: rgba(255, 255, 255, 0.87);
+    --mdc-select-ink-color: rgba(255, 255, 255, 0.87);
+    --mdc-select-label-ink-color: rgba(255, 255, 255, 0.87);
+    --mdc-select-dropdown-icon-color: rgba(255, 255, 255, 0.54);
 
-        --mdc-dialog-heading-ink-color: rgba(255, 255, 255, 0.87);
-        --mdc-dialog-content-ink-color: rgba(255, 255, 255, 0.6);
-        --mdc-dialog-max-width: 90vw;
+    --mdc-dialog-heading-ink-color: rgba(255, 255, 255, 0.87);
+    --mdc-dialog-content-ink-color: rgba(255, 255, 255, 0.6);
+    --mdc-dialog-max-width: 90vw;
 
-        --scroll-track-color: #222222;
-        --scroll-thumb-color: #383838;
-    }
+    --scroll-track-color: #222222;
+    --scroll-thumb-color: #383838;
+  }
 }
 
 body {
-    min-width: 500px;
-    margin: 24px;
-    color: var(--mdc-theme-on-surface);
-    background-color: var(--mdc-theme-background);
-    font-family: "Roboto";
+  min-width: 500px;
+  margin: 24px;
+  color: var(--mdc-theme-on-surface);
+  background-color: var(--mdc-theme-background);
+  font-family: "Roboto";
 }
 
-#themes-container {
-    form {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
-        margin-bottom: 48px;
-    }
+#themes-container form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 48px;
 }
 
 .button-row {
-    grid-column: 1 / -1;
-    display: flex;
-    justify-content: flex-end;
-    gap: 16px;
-    mwc-button {
-        white-space: nowrap;
-    }
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  mwc-button {
+    white-space: nowrap;
+  }
 }
 
 ::-webkit-scrollbar {
-    height: 12px;
-    width: 12px;
+  height: 12px;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-    border-radius: 6px;
-    background-color: var(--scroll-track-color);
+  border-radius: 6px;
+  background-color: var(--scroll-track-color);
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 6px;
-    background-color: var(--scroll-thumb-color);
+  border-radius: 6px;
+  background-color: var(--scroll-thumb-color);
 }
