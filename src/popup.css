@@ -57,9 +57,10 @@ body {
   display: flex;
   justify-content: flex-end;
   gap: 16px;
-  mwc-button {
-    white-space: nowrap;
-  }
+}
+
+.button-row mwc-button {
+  white-space: nowrap;
 }
 
 ::-webkit-scrollbar {

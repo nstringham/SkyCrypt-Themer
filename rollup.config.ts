@@ -2,7 +2,6 @@ import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 
 import typescript from "@rollup/plugin-typescript";
-import postcss from "rollup-plugin-postcss";
 
 import { chromeExtension, simpleReloader } from "rollup-plugin-chrome-extension";
 import { emptyDir } from "rollup-plugin-empty-dir";
@@ -23,7 +22,6 @@ export default {
     resolve(),
     commonjs(),
     typescript(),
-    postcss(),
     emptyDir(),
     isProduction && zip({ dir: "releases" }),
   ],
