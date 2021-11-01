@@ -9,9 +9,8 @@ export interface Themes {
 export interface Theme {
   name: string;
   author: string;
-  official?: true;
-  community?: true;
-  light?: true;
+  scheme: 2;
+  light?: boolean;
   images?: Images;
   backgrounds?: Backgrounds;
   colors?: Colors;
