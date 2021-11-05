@@ -9,7 +9,7 @@ export interface Themes {
 export interface Theme {
   name: string;
   author: string;
-  scheme: 2;
+  schema: 2;
   light?: boolean;
   images?: Images;
   backgrounds?: Backgrounds;

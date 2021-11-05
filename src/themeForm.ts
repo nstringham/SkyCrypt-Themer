@@ -59,7 +59,7 @@ export class ThemeForm {
 
     element.querySelector("#export-theme")?.addEventListener("click", () => this.saveFile());
 
-    this.theme = value || { name: "", author: "", scheme: 2 };
+    this.theme = value || { name: "", author: "", schema: 2 };
   }
 
   get theme(): Theme {
@@ -84,7 +84,7 @@ export class ThemeForm {
     return {
       name: this.nameField.value,
       author: this.authorField.value,
-      scheme: 2,
+      schema: 2,
       light: this.lightField.value === "light",
       images: {
         bg: this.bgField.value.length ? this.bgField.value : undefined,
