@@ -48,13 +48,6 @@ export class ThemeForm {
       });
     }
 
-    element.querySelector("#use-theme")?.addEventListener("click", () => {
-      this.port.postMessage({
-        type: "switch-theme",
-        theme: id,
-      });
-    });
-
     element.querySelector("#delete-theme")?.addEventListener("click", () => deletionCallback());
 
     element.querySelector("#export-theme")?.addEventListener("click", () => this.saveFile());

@@ -15,9 +15,6 @@ window.addEventListener("message", (event) => {
         localStorage.setItem("customThemeUrls", JSON.stringify(urls));
         document.querySelector<ThemeList>("#themes-box")?.reloadURLs?.();
         break;
-      case "switch-theme":
-        document.querySelector<HTMLInputElement>(`input[name="theme"][value="${event.data.theme}"]`)?.click();
-        break;
     }
   }
 });

@@ -42,9 +42,6 @@ chrome.runtime.onConnect.addListener((port) => {
           animationFrameID = -1;
         });
         break;
-      case "switch-theme":
-        window.postMessage(request, "https://sky.shiiyu.moe");
-        break;
     }
   });
 });
