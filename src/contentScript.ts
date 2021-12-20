@@ -1,13 +1,13 @@
 import { Themes } from "./common";
 
 function sendThemes(themes: Themes) {
-  window.postMessage(
-    {
-      type: "set-themes",
-      themes,
-    },
-    "https://sky.shiiyu.moe"
-  );
+  const urls = Object.values(themes).map((theme) => {
+    if (!theme.name) {
+      theme.name = "Themer Theme";
+    }
+    return "data:application/json;base64," + btoa(JSON.stringify(theme));
+  });
+  localStorage.setItem("customThemeUrls", JSON.stringify(urls));
 }
 
 chrome.storage.onChanged.addListener((changes, namespace) => {
