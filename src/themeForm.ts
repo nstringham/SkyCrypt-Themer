@@ -48,18 +48,11 @@ export class ThemeForm {
       });
     }
 
-    element.querySelector("#use-theme")?.addEventListener("click", () => {
-      this.port.postMessage({
-        type: "switch-theme",
-        theme: id,
-      });
-    });
-
     element.querySelector("#delete-theme")?.addEventListener("click", () => deletionCallback());
 
     element.querySelector("#export-theme")?.addEventListener("click", () => this.saveFile());
 
-    this.theme = value || { name: "", author: "", community: true };
+    this.theme = value || { name: "", author: "", schema: 2 };
   }
 
   get theme(): Theme {
@@ -84,8 +77,8 @@ export class ThemeForm {
     return {
       name: this.nameField.value,
       author: this.authorField.value,
-      community: true,
-      light: this.lightField.value === "light" || undefined,
+      schema: 2,
+      light: this.lightField.value === "light",
       images: {
         bg: this.bgField.value.length ? this.bgField.value : undefined,
       },
